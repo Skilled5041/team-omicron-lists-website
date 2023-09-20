@@ -1,9 +1,10 @@
-name: Format
+name: Prettier Format
 on:
   push:
-    branches: [main]
+    branches: [ "main" ]
   pull_request:
-    branches: [main]
+    branches: [ "main" ]
+    
 jobs:
   format:
     runs-on: ubuntu-latest
