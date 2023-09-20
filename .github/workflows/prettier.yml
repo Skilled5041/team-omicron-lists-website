@@ -17,6 +17,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
           persist-credentials: false
+      - run: npm i prettier-plugin-svelte
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
