@@ -39,5 +39,4 @@ You can preview the production build with `npm run preview`.
 
 TODO:
 
--   Add auto build and tests
--   Add auto linting and formatting for commits
+-   Write tests
