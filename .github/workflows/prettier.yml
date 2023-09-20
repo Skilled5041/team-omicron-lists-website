@@ -1,4 +1,4 @@
-name: Prettier Format
+name: Prettier
 on:
   push:
     branches: [ "main" ]
@@ -9,6 +9,8 @@ jobs:
   format:
     runs-on: ubuntu-latest
     name: prettier format
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v3
         with:
