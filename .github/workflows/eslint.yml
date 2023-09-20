@@ -22,5 +22,5 @@ jobs:
         run: npm install eslint
 
       - name: Run ESLint
-        run: npx run lint
+        run: npm run lint
         continue-on-error: true
