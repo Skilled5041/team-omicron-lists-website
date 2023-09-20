@@ -1,26 +1,25 @@
 name: Prettier
+
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
-    
+    branches: [main]
+
 jobs:
-  format:
+  prettier:
     runs-on: ubuntu-latest
-    name: prettier format
-    permissions:
-      contents: read
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
+          fetch-depth: 0
           ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v3
+          persist-credentials: false
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
         with:
-          node-version: "16.x"    
-      - name: Prettier Action
-      - uses: creyD/prettier_action@v4.3
-        with:
-          dry: true
+          dry: True
           prettier_options: --check
-      
+          github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
