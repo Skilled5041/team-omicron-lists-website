@@ -1,5 +1,4 @@
 <script>
-	let name = "world";
 </script>
 
 <h1>Welcome to SvelteKit</h1>
