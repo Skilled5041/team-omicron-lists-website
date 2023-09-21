@@ -4,6 +4,7 @@
 	import githubLogo from "$lib/assets/github_logo_light.svg";
 	import discordLogo from "$lib/assets/discord_logo_light.svg";
 	import { AppBar, AppShell } from "@skeletonlabs/skeleton";
+	import { LightSwitch } from "@skeletonlabs/skeleton";
 </script>
 
 <AppShell>
@@ -16,18 +17,31 @@
 			<svelte:fragment slot="lead">
 				<div class="left">
 					<a class="logo" href="/">
-						<img alt="Team Omicron Logo" class="logo" src={omicronLogo} />
+						<div class="omicron-logo">
+							<img alt="Team Omicron Logo" class="logo" src={omicronLogo} />
+							<!-- TODO: Get a font for the logo -->
+							<h1>Team Omicron</h1>
+						</div>
 					</a>
 				</div>
 			</svelte:fragment>
 			<div class="centre">
-				<a href="/list/demons">Demons List</a>
-				<a href="/list/challenges">Challenge List</a>
-				<a href="/about">About</a>
-				<a href="/contact">Contact</a>
+				<div class="link-container">
+					<a href="/list/demons">Demons List</a>
+				</div>
+				<div class="link-container">
+					<a href="/list/challenges">Challenge List</a>
+				</div>
+				<div class="link-container">
+					<a href="/about">About</a>
+				</div>
+				<div class="link-container">
+					<a href="/contact">Contact</a>
+				</div>
 			</div>
 			<svelte:fragment slot="trail">
 				<div class="right">
+					<LightSwitch />
 					<a class="logo" href="https://github.com/Skilled5041/team-omicron-website">
 						<img alt="GitHub Logo" class="logo" src={githubLogo} />
 					</a>
@@ -39,22 +53,91 @@
 		</AppBar>
 	</svelte:fragment>
 	<slot />
+	<svelte:fragment slot="footer">
+		<AppBar regionRowMain="place-self-center">
+			<div class="footer">
+				<h2 class="footer-text">Copyright © 2023 Team Omicron</h2>
+				<a class="footer-link" href="/privacy">Privacy Policy</a>
+				<a class="footer-link" href="/terms">Terms Of Service</a>
+			</div>
+		</AppBar>
+	</svelte:fragment>
 </AppShell>
 
 <style>
-	.left {
-		margin-left: 6rem;
-	}
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,600;9..40,800;9..40,900&display=swap');
 
-	.right {
+    * {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+    }
+
+    a {
+        font-size: 18px;
+    }
+
+    .link-container {
+        border-bottom-width: 2px;
+        border-bottom-color: transparent;
+        transition: 200ms;
+    }
+
+    .link-container:hover {
+        border-bottom-color: rgba(var(--color-surface-100) / 1);
+        transition: 200ms;
+    }
+
+    .left {
+        margin-left: 6rem;
+    }
+
+    .centre {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    .right {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-right: 6rem;
+        align-items: center;
+    }
+
+    .logo {
+        border-radius: 8px;
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .omicron-logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+	.footer {
 		display: flex;
-		justify-content: center;
-		gap: 1.5rem;
-		margin-right: 6rem;
+		align-items: center;
+		gap: 2rem;
 	}
 
-	.logo {
-		height: 2rem;
-		width: 2rem;
+    .footer-text {
+        font-size: 1rem;
+    }
+
+	.footer-link {
+		font-size: 1rem;
+	}
+
+	.footer-link:hover {
+		text-decoration: underline;
 	}
 </style>
