@@ -65,63 +65,63 @@
 </AppShell>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,600;9..40,800;9..40,900&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,600;9..40,800;9..40,900&display=swap");
 
-    * {
-        font-family: "DM Sans", sans-serif;
-        font-weight: 400;
-    }
+	* {
+		font-family: "DM Sans", sans-serif;
+		font-weight: 400;
+	}
 
-    a {
-        font-size: 18px;
-    }
+	a {
+		font-size: 18px;
+	}
 
-    .link-container {
-        border-bottom-width: 2px;
-        border-bottom-color: transparent;
-        transition: 200ms;
-    }
+	.link-container {
+		border-bottom-width: 2px;
+		border-bottom-color: transparent;
+		transition: 200ms;
+	}
 
-    .link-container:hover {
-        border-bottom-color: rgba(var(--color-surface-100) / 1);
-        transition: 200ms;
-    }
+	.link-container:hover {
+		border-bottom-color: rgba(var(--color-surface-100) / 1);
+		transition: 200ms;
+	}
 
-    .left {
-        margin-left: 6rem;
-    }
+	.left {
+		margin-left: 6rem;
+	}
 
-    .centre {
-        display: flex;
-        justify-content: center;
-        gap: 4rem;
-    }
+	.centre {
+		display: flex;
+		justify-content: center;
+		gap: 4rem;
+	}
 
-    .right {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-right: 6rem;
-        align-items: center;
-    }
+	.right {
+		display: flex;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-right: 6rem;
+		align-items: center;
+	}
 
-    .logo {
-        border-radius: 8px;
-        height: 2rem;
-        width: 2rem;
-    }
+	.logo {
+		border-radius: 8px;
+		height: 2rem;
+		width: 2rem;
+	}
 
-    .omicron-logo {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
+	.omicron-logo {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
 
-    h1 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin: 0;
-    }
+	h1 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin: 0;
+	}
 
 	.footer {
 		display: flex;
@@ -129,9 +129,9 @@
 		gap: 2rem;
 	}
 
-    .footer-text {
-        font-size: 1rem;
-    }
+	.footer-text {
+		font-size: 1rem;
+	}
 
 	.footer-link {
 		font-size: 1rem;
