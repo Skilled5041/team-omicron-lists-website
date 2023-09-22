@@ -36,7 +36,10 @@
 					<a href="/about">About</a>
 				</div>
 				<div class="link-container">
-					<a href="/contact">Contact</a>
+					<a href="/login">Login</a>
+				</div>
+				<div class="link-container">
+					<a href="/register">Register</a>
 				</div>
 			</div>
 			<svelte:fragment slot="trail">
@@ -94,7 +97,7 @@
 	.centre {
 		display: flex;
 		justify-content: center;
-		gap: 4rem;
+		gap: 3rem;
 	}
 
 	.right {
