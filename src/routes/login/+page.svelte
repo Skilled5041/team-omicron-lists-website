@@ -3,22 +3,8 @@
 </script>
 
 <div class="form-container">
-	<h1 class="title">Register</h1>
-	<form action="?/register" method="POST">
-		<label class="label">
-			<span>Username</span>
-			<input
-				class="input"
-				name="username"
-				placeholder="Username"
-				required
-				title="Username"
-				type="text"
-			/>
-			{#if form?.usernameError}
-				<p class="error">{form?.message}</p>
-			{/if}
-		</label>
+	<h1 class="title">Login</h1>
+	<form action="?/login" method="POST">
 		<label class="label">
 			<span>Email</span>
 			<input
@@ -43,12 +29,9 @@
 				title="Password"
 				type="password"
 			/>
-			{#if form?.passwordError}
-				<p class="error">{form?.message}</p>
-			{/if}
 		</label>
-		<button class="btn variant-filled-primary">Register</button>
-		{#if form?.supabaseError}
+		<button class="btn variant-filled-primary">Login</button>
+		{#if form?.error}
 			<p class="error">{form?.message}</p>
 		{/if}
 	</form>

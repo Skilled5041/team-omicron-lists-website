@@ -3,6 +3,7 @@
 // 1. Import the Skeleton plugin
 const { skeleton } = require("@skeletonlabs/tw-plugin");
 const { omicronTheme } = require("./omicron-theme.ts");
+import forms from "@tailwindcss/forms";
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
 		extend: {}
 	},
 	plugins: [
-		// 4. Append the Skeleton plugin (after other plugins)
+		forms,
 		skeleton({
 			themes: {
 				custom: [omicronTheme]

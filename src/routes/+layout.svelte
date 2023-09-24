@@ -5,6 +5,8 @@
 	import discordLogo from "$lib/assets/discord_logo_light.svg";
 	import { AppBar, AppShell } from "@skeletonlabs/skeleton";
 	import { LightSwitch } from "@skeletonlabs/skeleton";
+
+	export let data;
 </script>
 
 <AppShell>
@@ -35,12 +37,21 @@
 				<div class="link-container">
 					<a href="/about">About</a>
 				</div>
-				<div class="link-container">
-					<a href="/login">Login</a>
-				</div>
-				<div class="link-container">
-					<a href="/register">Register</a>
-				</div>
+				{#if data?.session?.user}
+					<div class="link-container">
+						<a href="/account">Account</a>
+					</div>
+					<form action="/logout" method="POST">
+						<button>Logout</button>
+					</form>
+				{:else}
+					<div class="link-container">
+						<a href="/login">Login</a>
+					</div>
+					<div class="link-container">
+						<a href="/register">Register</a>
+					</div>
+				{/if}
 			</div>
 			<svelte:fragment slot="trail">
 				<div class="right">
@@ -142,5 +153,16 @@
 
 	.footer-link:hover {
 		text-decoration: underline;
+	}
+
+	button {
+		border-bottom: 2px solid transparent;
+		transition: 200ms;
+		font-size: 18px;
+	}
+
+	button:hover {
+		border-bottom: 2px solid white;
+		transition: 200ms;
 	}
 </style>
