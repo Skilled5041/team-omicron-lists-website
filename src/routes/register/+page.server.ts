@@ -36,7 +36,6 @@ export const actions = {
 			email,
 			password,
 			user_metadata: { username },
-			email_confirm: true
 		});
 
 		// Username already exists

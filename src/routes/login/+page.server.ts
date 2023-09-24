@@ -19,8 +19,10 @@ export const actions = {
 		});
 
 		if (error) {
-			if (error.status !== 500) {
-				return fail(400, { message: "Invalid email or password.", error: true });
+			if (error.message === "Email not confirmed") {
+				return fail(400, { message: "Your email is not confirmed. Please check your email for a confirmation email.", error: true });
+			} else if (error.status !== 500) {
+				return fail(400, { message: "Invalid email or password", error: true });
 			}
 			return fail(500, { message: "Internal Server Error", error: true });
 		}
