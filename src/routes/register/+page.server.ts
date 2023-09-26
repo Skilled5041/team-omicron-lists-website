@@ -3,7 +3,8 @@ import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
 	register: async ({ request, locals: { supabase } }) => {
-		const usernameRegex = /^[a-zA-Z0-9]{3,24}$/;
+
+		const usernameRegex = /^[a-zA-Z0-9_]{3,24}$/;
 		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
@@ -11,11 +12,20 @@ export const actions = {
 		const username = formData.get("username") as string;
 		const email = formData.get("email") as string;
 		const password = formData.get("password") as string;
+		const confirmPassword = formData.get("confirmPassword") as string;
 
 		if (!usernameRegex.test(username)) {
 			return fail(400, {
 				message:
-					"Username must contain only letters and numbers and be 3 to 24 characters long",
+					"Username must contain only letters, numbers, or underscores (_), and be 3 to 24 characters long",
+				usernameError: true
+			});
+		}
+
+		// Cannot be all underscores
+		if (username.replace(/_/g, "").length === 0) {
+			return fail(400, {
+				message: "Username cannot be all underscores (_)",
 				usernameError: true
 			});
 		}
@@ -32,10 +42,27 @@ export const actions = {
 			});
 		}
 
+		if (password.length > 72) {
+			return fail(400, {
+				message: "Password must be 72 characters or less in length",
+				passwordError: true
+			});
+		}
+
+		if (password !== confirmPassword) {
+			return fail(400, {
+				message: "Passwords do not match",
+				passwordError: true
+			});
+		}
+
 		const { error } = await supabase.auth.admin.createUser({
 			email,
 			password,
-			user_metadata: { username },
+			user_metadata: {
+				username,
+				admin: false
+			}
 		});
 
 		// Username already exists
@@ -56,6 +83,7 @@ export const actions = {
 			return fail(500, { message: "Internal Server Error", supabaseError: true });
 		}
 
+		await supabase.auth.admin.inviteUserByEmail(email);
 		throw redirect(303, "/");
 	}
 } satisfies Actions;

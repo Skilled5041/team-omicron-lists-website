@@ -78,12 +78,16 @@
 	</svelte:fragment>
 </AppShell>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=anonymous>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,600;9..40,900&display=swap" rel="stylesheet">
+
 <style>
-	@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,600;9..40,800;9..40,900&display=swap");
 
 	* {
 		font-family: "DM Sans", sans-serif;
 		font-weight: 400;
+		font-size: 18px;
 	}
 
 	a {

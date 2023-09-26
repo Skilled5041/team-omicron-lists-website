@@ -29,6 +29,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
+	if (event.url.pathname.startsWith("/admin")) {
+		const session = await event.locals.getSession();
+		if (session?.user.user_metadata?.admin !== true) {
+			throw redirect(302, "/");
+		}
+	}
+
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {
 			return name === "content-range";

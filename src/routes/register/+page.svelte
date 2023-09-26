@@ -47,6 +47,17 @@
 				<p class="error">{form?.message}</p>
 			{/if}
 		</label>
+		<label class="label">
+			<span>Confirm Password</span>
+			<input
+				class="input"
+				name="confirmPassword"
+				placeholder="Confirm Password"
+				required
+				title="Confirm Password"
+				type="password"
+			/>
+		</label>
 		<button class="btn variant-filled-primary">Register</button>
 		{#if form?.supabaseError}
 			<p class="error">{form?.message}</p>
@@ -55,33 +66,33 @@
 </div>
 
 <style>
-	button {
-		margin-top: 1em;
-		margin-bottom: 1em;
-		width: 100%;
-	}
+    button {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
 
-	.form-container {
-		margin: 4em 48em 8em 48em;
-	}
+    .form-container {
+        margin: 4rem 48rem 8rem 48rem;
+    }
 
-	.label {
-		padding-bottom: 1em;
-	}
+    .label {
+        padding-bottom: 1rem;
+    }
 
-	.title {
-		text-align: center;
-		font-size: 32px;
-		padding: 1em;
-	}
+    .title {
+        text-align: center;
+        font-size: 32px;
+        padding: 1rem;
+    }
 
-	.input:user-invalid {
-		border-color: rgba(var(--color-error-500) / 1);
-	}
+    .input:user-invalid {
+        border-color: rgba(var(--color-error-500) / 1);
+    }
 
-	.error {
-		color: rgba(var(--color-error-500) / 1);
-		font-size: 12px;
-		line-height: 1.5;
-	}
+    .error {
+        color: rgba(var(--color-error-500) / 1);
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
 </style>
