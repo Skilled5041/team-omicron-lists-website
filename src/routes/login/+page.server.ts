@@ -20,7 +20,11 @@ export const actions = {
 
 		if (error) {
 			if (error.message === "Email not confirmed") {
-				return fail(400, { message: "Your email is not confirmed. Please check your email for a confirmation email.", error: true });
+				return fail(400, {
+					message:
+						"Your email is not confirmed. Please check your email for a confirmation email.",
+					error: true
+				});
 			} else if (error.status !== 500) {
 				return fail(400, { message: "Invalid email or password", error: true });
 			}

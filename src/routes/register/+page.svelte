@@ -66,33 +66,33 @@
 </div>
 
 <style>
-    button {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        width: 100%;
-    }
+	button {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		width: 100%;
+	}
 
-    .form-container {
-        margin: 4rem 48rem 8rem 48rem;
-    }
+	.form-container {
+		margin: 4rem 48rem 8rem 48rem;
+	}
 
-    .label {
-        padding-bottom: 1rem;
-    }
+	.label {
+		padding-bottom: 1rem;
+	}
 
-    .title {
-        text-align: center;
-        font-size: 32px;
-        padding: 1rem;
-    }
+	.title {
+		text-align: center;
+		font-size: 32px;
+		padding: 1rem;
+	}
 
-    .input:user-invalid {
-        border-color: rgba(var(--color-error-500) / 1);
-    }
+	.input:user-invalid {
+		border-color: rgba(var(--color-error-500) / 1);
+	}
 
-    .error {
-        color: rgba(var(--color-error-500) / 1);
-        font-size: 0.75rem;
-        line-height: 1.5;
-    }
+	.error {
+		color: rgba(var(--color-error-500) / 1);
+		font-size: 0.75rem;
+		line-height: 1.5;
+	}
 </style>

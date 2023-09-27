@@ -3,7 +3,6 @@ import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
 	register: async ({ request, locals: { supabase } }) => {
-
 		const usernameRegex = /^[a-zA-Z0-9_]{3,24}$/;
 		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -83,7 +82,10 @@ export const actions = {
 			return fail(500, { message: "Internal Server Error", supabaseError: true });
 		}
 
-		await supabase.auth.admin.inviteUserByEmail(email);
+		await supabase.auth.admin.inviteUserByEmail(email, {
+			// TODO: Change this to the actual URL
+			redirectTo: "http://localhost:5173/email-confirmed"
+		});
 		throw redirect(303, "/");
 	}
 } satisfies Actions;

@@ -49,33 +49,33 @@
 </div>
 
 <style>
-    button {
-        margin-top: 1em;
-        margin-bottom: 1em;
-        width: 100%;
-    }
+	button {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		width: 100%;
+	}
 
-    .form-container {
-        margin: 4em 48em 8em 48em;
-    }
+	.form-container {
+		margin: 4em 48em 8em 48em;
+	}
 
-    .label {
-        padding-bottom: 1em;
-    }
+	.label {
+		padding-bottom: 1em;
+	}
 
-    .title {
-        text-align: center;
-        font-size: 32px;
-        padding: 1em;
-    }
+	.title {
+		text-align: center;
+		font-size: 32px;
+		padding: 1em;
+	}
 
-    .input:user-invalid {
-        border-color: rgba(var(--color-error-500) / 1);
-    }
+	.input:user-invalid {
+		border-color: rgba(var(--color-error-500) / 1);
+	}
 
-    .error {
-        color: rgba(var(--color-error-500) / 1);
-        font-size: 12px;
-        line-height: 1.5;
-    }
+	.error {
+		color: rgba(var(--color-error-500) / 1);
+		font-size: 12px;
+		line-height: 1.5;
+	}
 </style>
