@@ -5,5 +5,23 @@
 
 html,
 body {
+	@apply h-full;
+}
+body {
+	background-image: radial-gradient(
+			at 30% 70%,
+			rgba(var(--color-secondary-500) / 0.2) 0%,
+			transparent 60%
+		),
+		radial-gradient(at 90% 10%, rgba(var(--color-primary-500) / 0.2) 0%, transparent 60%);
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	@apply h-full overflow-hidden;
+}
+
+@font-face {
+	font-family: "DM Sans";
+	src: url("/fonts/dm-sans/DMSans-Regular.ttf"), url();
 }

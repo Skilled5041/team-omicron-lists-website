@@ -1,10 +1,14 @@
-<script>
+<script lang="ts">
 	import "../app.postcss";
 	import omicronLogo from "$lib/assets/team_omicron_logo.webp";
 	import githubLogo from "$lib/assets/github_logo_light.svg";
 	import discordLogo from "$lib/assets/discord_logo_light.svg";
-	import { AppBar, AppShell } from "@skeletonlabs/skeleton";
+	import { AppBar, AppRailTile, AppShell } from "@skeletonlabs/skeleton";
 	import { LightSwitch } from "@skeletonlabs/skeleton";
+	import Icon from "@iconify/svelte";
+
+	let sidebarOpen = false;
+	let currentSideBarTile = 0;
 
 	export let data;
 </script>
@@ -21,7 +25,6 @@
 					<a class="logo" href="/">
 						<div class="omicron-logo">
 							<img alt="Team Omicron Logo" class="logo" src={omicronLogo} />
-							<!-- TODO: Get a font for the logo -->
 							<h1>Team Omicron</h1>
 						</div>
 					</a>
@@ -55,17 +58,77 @@
 			</div>
 			<svelte:fragment slot="trail">
 				<div class="right">
-					<LightSwitch />
+					<div class="light-switch">
+						<LightSwitch />
+					</div>
 					<a class="logo" href="https://github.com/Skilled5041/team-omicron-website">
 						<img alt="GitHub Logo" class="logo" src={githubLogo} />
 					</a>
 					<a class="logo" href="https://discord.gg/39rewbHnuf">
 						<img alt="Discord Logo" class="logo" src={discordLogo} />
 					</a>
+					<button
+						class="hamburger-menu"
+						on:click={() => {
+							sidebarOpen = !sidebarOpen;
+						}}
+					>
+						<Icon icon="quill:hamburger" />
+					</button>
 				</div>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
+
+	<svelte:fragment slot="sidebarLeft">
+		<div class="sidebar" class:sidebarOpen>
+			<AppRailTile bind:group={currentSideBarTile} name="Home" value={0}>
+				<div class="sidebar-tile">
+					<a href="/">Home</a>
+				</div>
+			</AppRailTile>
+			<AppRailTile bind:group={currentSideBarTile} name="Demons" value={1}>
+				<div class="sidebar-tile">
+					<a href="/list/demons">Demons List</a>
+				</div>
+			</AppRailTile>
+			<AppRailTile bind:group={currentSideBarTile} name="Challenges" value={2}>
+				<div class="sidebar-tile">
+					<a href="/list/challenges">Challenge List</a>
+				</div>
+			</AppRailTile>
+			<AppRailTile bind:group={currentSideBarTile} name="About" value={3}>
+				<div class="sidebar-tile">
+					<a href="/about">About</a>
+				</div>
+			</AppRailTile>
+			{#if data?.session?.user}
+				<AppRailTile bind:group={currentSideBarTile} name="Account" value={4}>
+					<div class="sidebar-tile">
+						<a href="/account">Account</a>
+					</div>
+				</AppRailTile>
+				<form action="/logout" method="POST">
+					<button class="sidebar-tile">Logout</button>
+				</form>
+			{:else}
+				<AppRailTile bind:group={currentSideBarTile} name="Login" value={4}>
+					<div class="sidebar-tile">
+						<a href="/login">Login</a>
+					</div>
+				</AppRailTile>
+				<AppRailTile bind:group={currentSideBarTile} name="Register" value={5}>
+					<div class="sidebar-tile">
+						<a href="/register">Register</a>
+					</div>
+				</AppRailTile>
+			{/if}
+			<div class="flex flex-auto justify-center mt-4">
+				<LightSwitch />
+			</div>
+		</div>
+	</svelte:fragment>
+
 	<slot />
 	<svelte:fragment slot="footer">
 		<AppBar regionRowMain="place-self-center">
@@ -77,13 +140,6 @@
 		</AppBar>
 	</svelte:fragment>
 </AppShell>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-<link
-	href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,600;9..40,900&display=swap"
-	rel="stylesheet"
-/>
 
 <style>
 	* {
@@ -170,5 +226,80 @@
 	button:hover {
 		border-bottom: 2px solid white;
 		transition: 200ms;
+	}
+
+	.hamburger-menu {
+		display: none;
+	}
+
+	.sidebar {
+		display: none;
+	}
+
+	@media (max-width: 1024px) {
+		.sidebar {
+			left: -100%;
+			--tw-text-opacity: 1;
+			--tw-bg-opacity: 1;
+			color: rgb(var(--color-primary-100) / var(--tw-text-opacity));
+			background-color: rgb(var(--color-surface-900) / var(--tw-bg-opacity));
+			height: 100%;
+			position: absolute;
+			display: block;
+			transition: left 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		}
+
+		.sidebarOpen {
+			left: 0;
+			transition: left 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+		}
+
+		a {
+			font-size: 16px;
+		}
+
+		h1 {
+			font-size: 1rem;
+		}
+
+		.left {
+			margin-left: 0.5rem;
+		}
+
+		.logo {
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+
+		.right {
+			margin-right: 0.5rem;
+		}
+
+		.centre {
+			display: none;
+		}
+
+		.sidebar-tile {
+			margin: 1rem;
+			overflow-wrap: break-word;
+			width: 5rem;
+		}
+
+		.light-switch {
+			display: none;
+		}
+
+		.hamburger-menu {
+			display: block;
+			border: none;
+		}
+
+		.hamburger-menu:hover {
+			border: none;
+		}
+
+		div :global(svg) {
+			font-size: 2rem;
+		}
 	}
 </style>

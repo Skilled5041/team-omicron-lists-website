@@ -86,6 +86,6 @@ export const actions = {
 			// TODO: Change this to the actual URL
 			redirectTo: "http://localhost:5173/email-confirmed"
 		});
-		throw redirect(303, "/");
+		throw redirect(303, "/email-confirmation?redirectedFrom=/register");
 	}
 } satisfies Actions;
