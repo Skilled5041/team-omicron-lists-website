@@ -1,6 +1,6 @@
 ![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=team-omicron-lists-website-git-main-skilled5041&style=for-the-badge)
-![GitHub contributors (via allcontributors.org)](https://img.shields.io/github/all-contributors/skilled5041/team-omicron-website?style=for-the-badge)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/skilled5041/team-omicron-lists-website?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/skilled5041/team-omicron-lists-website)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/skilled5041/team-omicron-lists-website?style=for-the-badge?style-for-the-badge)
 
 
 
@@ -51,15 +51,3 @@ You can preview the production build with `npm run preview`.
 TODO:
 
 -   Write tests
-
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
