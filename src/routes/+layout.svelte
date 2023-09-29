@@ -302,4 +302,28 @@
 			font-size: 2rem;
 		}
 	}
+
+    @media (max-width: 1800px) {
+		.left {
+			margin-left: 1rem;
+		}
+
+		.right {
+			margin-right: 1rem;
+		}
+
+        .logo {
+            height: 1.75rem;
+            width: 1.75rem;
+        }
+
+        a {
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+        }
+
+    }
 </style>
