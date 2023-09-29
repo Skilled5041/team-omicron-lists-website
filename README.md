@@ -1,4 +1,4 @@
-![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app={team-omicron-lists-website-git-main-skilled5041}&style=for-the-bade)
+![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=team-omicron-lists-website-git-main-skilled5041&style=for-the-bade)
 
 # create-svelte
 
