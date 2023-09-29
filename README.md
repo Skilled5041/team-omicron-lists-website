@@ -1,7 +1,10 @@
 ![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=team-omicron-lists-website-git-main-skilled5041&style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors-anon/skilled5041/team-omicron-website?style=for-the-badge)
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/skilled5041/team-omicron-website?style=for-the-badge)
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/skilled5041/team-omicron-website?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/skilled5041/team-omicron-website?style=for-the-badge)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skilled5041/team-omicron-website?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/skilled5041/team-omicron-website?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/skilled5041/team-omicron-website?style=for-the-badge)
 
 
 ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
