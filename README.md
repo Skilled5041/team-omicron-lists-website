@@ -5,6 +5,7 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skilled5041/team-omicron-website?style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/skilled5041/team-omicron-website?style=for-the-badge)
 ![GitHub Repo stars](https://img.shields.io/github/stars/skilled5041/team-omicron-website?style=for-the-badge)
+![Lines of code](https://tokei.rs/b1/github/skilled5041/team-omicron-website?category=lines)
 
 
 ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
