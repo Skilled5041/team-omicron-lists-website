@@ -26,5 +26,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Create .env file
+    - run: |
+        touch .env
+        echo "SECRET_SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SECRET_SUPABASE_SERVICE_ROLE_KEY }}" > .env
+        echo "SECRET_SUPABASE_URL=${{ secrets.SECRET_SUPABASE_URL }}" >> .env
     - run: npm install playright vitest
     - run: npm test
