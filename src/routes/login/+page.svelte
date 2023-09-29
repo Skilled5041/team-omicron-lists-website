@@ -56,7 +56,10 @@
 	}
 
 	.form-container {
-		margin: 4em 48em 8em 48em;
+		border-radius: 12px;
+        margin: 6% 35% 0 35%;
+        padding: 2% 5% 2% 5%;
+        background-color: rgba(0, 0, 0, 0.3);
 	}
 
 	.label {
@@ -78,4 +81,32 @@
 		font-size: 12px;
 		line-height: 1.5;
 	}
+
+    @media (max-width: 1650px) {
+        .form-container {
+            margin: 10% 30% 0 30%;
+            padding: 2% 8% 2% 8%;
+        }
+    }
+
+    @media (max-width: 1400px) {
+        .form-container {
+            margin: 10% 20% 0 20%;
+            padding: 2% 8% 2% 8%;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .form-container {
+            margin: 10% 15% 0 15%;
+            padding: 2% 8% 2% 8%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            margin: 10% 10% 0 10%;
+            padding: 2% 8% 2% 8%;
+        }
+    }
 </style>
