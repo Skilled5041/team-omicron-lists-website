@@ -1,5 +1,5 @@
 ![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=team-omicron-lists-website-git-main-skilled5041&style=for-the-badge)
-![GitHub contributors (via allcontributors.org)](https://img.shields.io/github/all-contributors/skilled5041/Skilled5041/team-omicron-website/main?style=for-the-badge)
+![GitHub contributors (via allcontributors.org)](https://img.shields.io/github/all-contributors/skilled5041/Skilled5041/team-omicron-website?style=for-the-badge)
 
 
 ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
