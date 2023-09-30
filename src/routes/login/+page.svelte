@@ -1,17 +1,7 @@
 <script lang="ts">
-	import { afterNavigate } from "$app/navigation";
-	import { base } from "$app/paths";
 	import PasswordInput from "$lib/components/PasswordInput.svelte";
 
 	export let form;
-
-	// Get page that was requested before login
-	afterNavigate(({ from }) => {
-		console.log("Redirecting to", from?.url?.pathname);
-		if (from?.url?.pathname === base + "/login") {
-			return;
-		}
-	});
 </script>
 
 <div class="form-container">

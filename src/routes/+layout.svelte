@@ -270,6 +270,7 @@
 			position: absolute;
 			display: block;
 			transition: left 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+			z-index: 10;
 		}
 
 		.sidebarOpen {
