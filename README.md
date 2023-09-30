@@ -6,7 +6,6 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/skilled5041/team-omicron-website?style=for-the-badge)
 ![GitHub Repo stars](https://img.shields.io/github/stars/skilled5041/team-omicron-website?style=for-the-badge)
 
-
 ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)

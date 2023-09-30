@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from "$app/navigation";
 	import { base } from "$app/paths";
+	import PasswordInput from "$lib/components/PasswordInput.svelte";
 
 	export let form;
 
@@ -30,36 +31,20 @@
 				<p class="error">{form?.message}</p>
 			{/if}
 		</label>
-		<label class="label">
-			<span>Password</span>
-			<input
-				class="input"
-				name="password"
-				placeholder="Password"
-				required
-				title="Password"
-				type="password"
-			/>
-		</label>
-		<button class="btn variant-filled-primary">Login</button>
+		<PasswordInput />
+		<button class="btn variant-filled-primary w-full mt-4 mb-4">Login</button>
 		{#if form?.error}
 			<p class="error">{form?.message}</p>
 		{/if}
 	</form>
 </div>
 
-<style>
-	button {
-		margin-top: 1em;
-		margin-bottom: 1em;
-		width: 100%;
-	}
-
+<style lang="postcss">
 	.form-container {
 		border-radius: 12px;
-        margin: 6% 35% 0 35%;
-        padding: 2% 5% 2% 5%;
-        background-color: rgba(0, 0, 0, 0.3);
+		margin: 6% 35% 0 35%;
+		padding: 2% 5% 2% 5%;
+		background-color: rgba(0, 0, 0, 0.3);
 	}
 
 	.label {
@@ -82,31 +67,31 @@
 		line-height: 1.5;
 	}
 
-    @media (max-width: 1650px) {
-        .form-container {
-            margin: 10% 30% 0 30%;
-            padding: 2% 8% 2% 8%;
-        }
-    }
+	@media (max-width: 1650px) {
+		.form-container {
+			margin: 10% 30% 0 30%;
+			padding: 2% 8% 2% 8%;
+		}
+	}
 
-    @media (max-width: 1400px) {
-        .form-container {
-            margin: 10% 20% 0 20%;
-            padding: 2% 8% 2% 8%;
-        }
-    }
+	@media (max-width: 1400px) {
+		.form-container {
+			margin: 10% 20% 0 20%;
+			padding: 2% 8% 2% 8%;
+		}
+	}
 
-    @media (max-width: 1024px) {
-        .form-container {
-            margin: 10% 15% 0 15%;
-            padding: 2% 8% 2% 8%;
-        }
-    }
+	@media (max-width: 1024px) {
+		.form-container {
+			margin: 10% 15% 0 15%;
+			padding: 2% 8% 2% 8%;
+		}
+	}
 
-    @media (max-width: 768px) {
-        .form-container {
-            margin: 10% 10% 0 10%;
-            padding: 2% 8% 2% 8%;
-        }
-    }
+	@media (max-width: 768px) {
+		.form-container {
+			margin: 10% 10% 0 10%;
+			padding: 2% 8% 2% 8%;
+		}
+	}
 </style>
