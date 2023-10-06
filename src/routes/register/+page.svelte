@@ -18,7 +18,7 @@
 				type="text"
 			/>
 			{#if form?.usernameError}
-				<p class="error">{form?.message}</p>
+				<p class="text-error-500 text-xs">{form?.message}</p>
 			{/if}
 		</label>
 		<label class="label">
@@ -32,14 +32,14 @@
 				type="email"
 			/>
 			{#if form?.emailError}
-				<p class="error">{form?.message}</p>
+				<p class="text-error-500 text-xs">{form?.message}</p>
 			{/if}
 		</label>
 		<PasswordInput errorMessage={form?.passwordError ? form?.message : null} />
 		<PasswordInput name="confirmPassword" label="Confirm Password" />
 		<button class="btn variant-filled-primary">Register</button>
 		{#if form?.supabaseError}
-			<p class="error">{form?.message}</p>
+			<p class="text-error-500 text-xs">{form?.message}</p>
 		{/if}
 	</form>
 </div>
@@ -69,13 +69,7 @@
 	}
 
 	.input:user-invalid {
-		border-color: rgba(var(--color-error-500) / 1);
-	}
-
-	.error {
-		color: rgba(var(--color-error-500) / 1);
-		font-size: 0.75rem;
-		line-height: 1.5;
+		border-color: rgba(var(--color-error-400-500-token) / 1);
 	}
 
 	@media (max-width: 1650px) {

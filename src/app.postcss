@@ -23,5 +23,11 @@ body {
 
 @font-face {
 	font-family: "DM Sans";
-	src: url("/fonts/dm-sans/DMSans-Regular.ttf"), url();
+	src: url("/fonts/dm-sans/DMSans-Regular.ttf"), url("/fonts/dm-sans/DMSans-Medium.ttf"),
+		url("/fonts/dm-sans/DMSans-SemiBold.ttf"), url("/fonts/dm-sans/DMSans-Black.ttf");
+}
+
+:root [data-theme="skeleton"] {
+	--theme-font-family-base: "DM Sans", sans-serif;
+	--theme-font-family-heading: "DM Sans", sans-serif;
 }

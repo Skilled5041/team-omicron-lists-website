@@ -34,40 +34,46 @@ export interface Database {
 				Row: {
 					created_at: string | null;
 					creators: string[] | null;
+					fps: number[] | null;
 					gddp_id: string | null;
 					id: number;
 					last_updated: string | null;
 					main_id: string | null;
 					minimum_progress: number | null;
-					publisher: string | null;
-					rank: number | null;
-					verification_url: string | null;
+					name: string;
+					publisher: string;
+					rank: number;
+					verification_url: string;
 					verifier: string | null;
 				};
 				Insert: {
 					created_at?: string | null;
 					creators?: string[] | null;
+					fps?: number[] | null;
 					gddp_id?: string | null;
 					id?: number;
 					last_updated?: string | null;
 					main_id?: string | null;
 					minimum_progress?: number | null;
-					publisher?: string | null;
-					rank?: number | null;
-					verification_url?: string | null;
+					name: string;
+					publisher: string;
+					rank: number;
+					verification_url: string;
 					verifier?: string | null;
 				};
 				Update: {
 					created_at?: string | null;
 					creators?: string[] | null;
+					fps?: number[] | null;
 					gddp_id?: string | null;
 					id?: number;
 					last_updated?: string | null;
 					main_id?: string | null;
 					minimum_progress?: number | null;
-					publisher?: string | null;
-					rank?: number | null;
-					verification_url?: string | null;
+					name?: string;
+					publisher?: string;
+					rank?: number;
+					verification_url?: string;
 					verifier?: string | null;
 				};
 				Relationships: [
@@ -91,18 +97,21 @@ export interface Database {
 					extended_list_count: number;
 					id: number;
 					mainlist_count: number;
+					total_count: number;
 				};
 				Insert: {
 					created_at?: string;
 					extended_list_count: number;
 					id?: number;
 					mainlist_count: number;
+					total_count: number;
 				};
 				Update: {
 					created_at?: string;
 					extended_list_count?: number;
 					id?: number;
 					mainlist_count?: number;
+					total_count?: number;
 				};
 				Relationships: [];
 			};
@@ -193,40 +202,46 @@ export interface Database {
 				Row: {
 					created_at: string;
 					creators: string[] | null;
+					fps: number[] | null;
 					gddp_id: string | null;
 					id: number;
 					last_updated: string | null;
 					main_id: string | null;
-					minimum_progress: number | null;
-					publisher: string | null;
-					rank: number | null;
-					verification_url: string | null;
+					minimum_progress: number;
+					name: string;
+					publisher: string;
+					rank: number;
+					verification_url: string;
 					verifier: string | null;
 				};
 				Insert: {
 					created_at?: string;
 					creators?: string[] | null;
+					fps?: number[] | null;
 					gddp_id?: string | null;
 					id?: number;
 					last_updated?: string | null;
 					main_id?: string | null;
-					minimum_progress?: number | null;
-					publisher?: string | null;
-					rank?: number | null;
-					verification_url?: string | null;
+					minimum_progress: number;
+					name: string;
+					publisher: string;
+					rank: number;
+					verification_url: string;
 					verifier?: string | null;
 				};
 				Update: {
 					created_at?: string;
 					creators?: string[] | null;
+					fps?: number[] | null;
 					gddp_id?: string | null;
 					id?: number;
 					last_updated?: string | null;
 					main_id?: string | null;
-					minimum_progress?: number | null;
-					publisher?: string | null;
-					rank?: number | null;
-					verification_url?: string | null;
+					minimum_progress?: number;
+					name?: string;
+					publisher?: string;
+					rank?: number;
+					verification_url?: string;
 					verifier?: string | null;
 				};
 				Relationships: [
@@ -250,18 +265,21 @@ export interface Database {
 					extended_list_count: number;
 					id: number;
 					mainlist_count: number;
+					total_count: number;
 				};
 				Insert: {
 					created_at?: string;
 					extended_list_count: number;
 					id?: number;
 					mainlist_count: number;
+					total_count: number;
 				};
 				Update: {
 					created_at?: string;
 					extended_list_count?: number;
 					id?: number;
 					mainlist_count?: number;
+					total_count?: number;
 				};
 				Relationships: [];
 			};

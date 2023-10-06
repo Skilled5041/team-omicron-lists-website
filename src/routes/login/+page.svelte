@@ -18,13 +18,13 @@
 				type="email"
 			/>
 			{#if form?.emailError}
-				<p class="error">{form?.message}</p>
+				<p class="text-error-500 text-xs">{form?.message}</p>
 			{/if}
 		</label>
 		<PasswordInput />
 		<button class="btn variant-filled-primary w-full mt-4 mb-4">Login</button>
 		{#if form?.error}
-			<p class="error">{form?.message}</p>
+			<p class="text-error-500 text-xs">{form?.message}</p>
 		{/if}
 	</form>
 </div>
@@ -48,13 +48,7 @@
 	}
 
 	.input:user-invalid {
-		border-color: rgba(var(--color-error-500) / 1);
-	}
-
-	.error {
-		color: rgba(var(--color-error-500) / 1);
-		font-size: 12px;
-		line-height: 1.5;
+		border-color: rgba(var(--text-error-400-500-token) / 1);
 	}
 
 	@media (max-width: 1650px) {

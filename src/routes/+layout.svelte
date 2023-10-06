@@ -6,6 +6,10 @@
 	import { AppBar, AppRailTile, AppShell } from "@skeletonlabs/skeleton";
 	import { LightSwitch } from "@skeletonlabs/skeleton";
 	import Icon from "@iconify/svelte";
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from "@floating-ui/dom";
+	import { storePopup } from "@skeletonlabs/skeleton";
+
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
 	let sidebarOpen = false;
 	let currentSideBarTile = 0;
@@ -142,10 +146,9 @@
 </AppShell>
 
 <style>
-	* {
+	:global(*) {
 		font-family: "DM Sans", sans-serif;
 		font-weight: 400;
-		font-size: 18px;
 	}
 
 	a {
@@ -159,7 +162,7 @@
 	}
 
 	.link-container:hover {
-		border-bottom-color: rgba(var(--color-surface-100) / 1);
+		border-bottom-color: rgba(var(--color-surface-100-900-token) / 1);
 		transition: 200ms;
 	}
 
@@ -218,13 +221,14 @@
 	}
 
 	button {
-		border-bottom: 2px solid transparent;
+		border-bottom-width: 2px;
+		border-bottom-color: transparent;
 		transition: 200ms;
 		font-size: 18px;
 	}
 
 	button:hover {
-		border-bottom: 2px solid white;
+		border-bottom: 2px solid rgba(var(--color-surface-100-900-token) / 1);
 		transition: 200ms;
 	}
 

@@ -44,9 +44,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@floating-ui/dom": "^1.5.3",
 		"@supabase/auth-helpers-sveltekit": "^0.10.3",
 		"@supabase/gotrue-js": "^2.54.0",
 		"@supabase/supabase-js": "^2.36.0",
-		"supabase": "^1.99.5"
+		"supabase": "^1.99.5",
+		"svelte-local-storage-store": "^0.6.0"
 	}
 }

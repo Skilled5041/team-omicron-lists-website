@@ -33,7 +33,7 @@
 		</button>
 	</div>
 	{#if errorMessage}
-		<p class="error">{errorMessage}</p>
+		<p class="text-error-500 text-xs">{errorMessage}</p>
 	{/if}
 </label>
 
@@ -66,7 +66,7 @@
 	}
 
 	.error {
-		color: rgba(var(--color-error-500) / 1);
+		color: rgba(var(--color-error-400-500-token) / 1);
 		font-size: 0.75rem;
 		line-height: 1.5;
 	}
