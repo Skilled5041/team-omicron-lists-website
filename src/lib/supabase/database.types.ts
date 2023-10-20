@@ -91,6 +91,37 @@ export interface Database {
 					}
 				];
 			};
+			challenge_list_history: {
+				Row: {
+					change: number;
+					created_at: string;
+					id: number;
+					level: number;
+					operation: string;
+				};
+				Insert: {
+					change: number;
+					created_at?: string;
+					id?: number;
+					level: number;
+					operation: string;
+				};
+				Update: {
+					change?: number;
+					created_at?: string;
+					id?: number;
+					level?: number;
+					operation?: string;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "challenge_list_history_level_fkey";
+						columns: ["level"];
+						referencedRelation: "challenge_list";
+						referencedColumns: ["id"];
+					}
+				];
+			};
 			challenge_list_info: {
 				Row: {
 					created_at: string;
@@ -281,6 +312,37 @@ export interface Database {
 						columns: ["verifier"];
 						referencedRelation: "profiles";
 						referencedColumns: ["username"];
+					}
+				];
+			};
+			demons_list_history: {
+				Row: {
+					change: number;
+					created_at: string;
+					id: number;
+					level: number;
+					operation: string;
+				};
+				Insert: {
+					change: number;
+					created_at?: string;
+					id?: number;
+					level: number;
+					operation: string;
+				};
+				Update: {
+					change?: number;
+					created_at?: string;
+					id?: number;
+					level?: number;
+					operation?: string;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "demons_list_history_level_fkey";
+						columns: ["level"];
+						referencedRelation: "demons_list";
+						referencedColumns: ["id"];
 					}
 				];
 			};

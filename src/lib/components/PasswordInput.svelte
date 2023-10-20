@@ -64,5 +64,4 @@
 		position: absolute;
 		right: 0.8em;
 	}
-
 </style>

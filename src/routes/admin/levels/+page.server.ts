@@ -20,7 +20,7 @@ export const actions = {
 			}
 
 			const gdpsId = formData.get("gddpId") as string;
-			if (!gdpsId.match(/^\d+$/) && gdpsId) {
+			if (gdpsId && !gdpsId.match(/^\d+$/)) {
 				return {
 					gdpsIdError: true,
 					message: "Invalid ID"
@@ -36,7 +36,6 @@ export const actions = {
 			}
 
 			const verifier = formData.get("verifier") as string;
-
 			const { data: profiles, error } = await supabase
 				.from("profiles")
 				.select("*")
@@ -114,7 +113,7 @@ export const actions = {
 			const { data: ListLevels, error: listLevelsError } = await supabase
 				.from(`${list}_list`)
 				.select("*")
-				.gt("rank", rank);
+				.gte("rank", rank);
 
 			if (listLevelsError) {
 				console.log(listLevelsError);
@@ -141,15 +140,15 @@ export const actions = {
 				}
 			}
 
-			const { error: listInsertError } = await supabase
+			const { error: listInsertError, data: levelData } = await supabase
 				.from(`${list}_list`)
 				.insert([
 					{
 						rank: rank,
 						name: levelName as string,
-						publisher: publisher,
+						publisher: publisherProfiles[0].username,
 						fps: parsedFps,
-						verifier: verifier,
+						verifier: profiles[0].username,
 						nong_download_link: nongUrl as string | null,
 						gdps_id: gdpsId,
 						verification_url: verificationUrl,
@@ -180,6 +179,39 @@ export const actions = {
 				return {
 					databaseError: true,
 					message: incrementError.message
+				};
+			}
+
+			const { error: historyError } = await supabase.from(`${list}_list_history`).insert(
+				{
+					level: levelData[0].id,
+					operation: "insert",
+					change: rank
+				}
+			);
+
+			if (historyError) {
+				console.log(historyError);
+				return {
+					databaseError: true,
+					message: historyError.message
+				};
+			}
+
+			const { error: recordError } = await supabase
+				.from(`${list}_list_records`)
+				.insert({
+					username: profiles[0].username,
+					progress: 100,
+					video_proof: verificationUrl,
+					level_id: levelData[0].id
+				});
+
+			if (recordError) {
+				console.log(recordError);
+				return {
+					databaseError: true,
+					message: recordError.message
 				};
 			}
 

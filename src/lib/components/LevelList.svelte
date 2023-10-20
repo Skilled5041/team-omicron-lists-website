@@ -13,7 +13,7 @@
 	</div>
 {:else}
 	<div class="levels-list">
-		{#each levels as level}
+		{#each levels.reverse() as level}
 			<div class="level-container">
 				<a href={level.verification_url} class="thumbnail">
 					<img
