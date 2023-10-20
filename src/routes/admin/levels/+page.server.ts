@@ -182,13 +182,11 @@ export const actions = {
 				};
 			}
 
-			const { error: historyError } = await supabase.from(`${list}_list_history`).insert(
-				{
-					level: levelData[0].id,
-					operation: "insert",
-					change: rank
-				}
-			);
+			const { error: historyError } = await supabase.from(`${list}_list_history`).insert({
+				level: levelData[0].id,
+				operation: "insert",
+				change: rank
+			});
 
 			if (historyError) {
 				console.log(historyError);
@@ -198,14 +196,12 @@ export const actions = {
 				};
 			}
 
-			const { error: recordError } = await supabase
-				.from(`${list}_list_records`)
-				.insert({
-					username: profiles[0].username,
-					progress: 100,
-					video_proof: verificationUrl,
-					level_id: levelData[0].id
-				});
+			const { error: recordError } = await supabase.from(`${list}_list_records`).insert({
+				username: profiles[0].username,
+				progress: 100,
+				video_proof: verificationUrl,
+				level_id: levelData[0].id
+			});
 
 			if (recordError) {
 				console.log(recordError);
