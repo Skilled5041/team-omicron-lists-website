@@ -1,14 +1,15 @@
 <script lang="ts">
 	import PasswordInput from "$lib/components/PasswordInput.svelte";
+	import { enhance } from "$app/forms";
 
 	export let form;
 </script>
 
 <div class="form-container">
 	<h1 class="title">Login</h1>
-	<form action="?/login" method="POST">
+	<form action="?/login" method="POST" use:enhance>
 		<label class="label">
-			<span>Email</span>
+			<span>Email <span class="text-error-400-500-token">*</span></span>
 			<input
 				class="input"
 				name="email"

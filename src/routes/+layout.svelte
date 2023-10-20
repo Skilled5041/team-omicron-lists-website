@@ -3,11 +3,15 @@
 	import omicronLogo from "$lib/assets/team_omicron_logo.webp";
 	import githubLogo from "$lib/assets/github_logo_light.svg";
 	import discordLogo from "$lib/assets/discord_logo_light.svg";
-	import { AppBar, AppRailTile, AppShell } from "@skeletonlabs/skeleton";
+	import { AppBar, AppRailTile, AppShell, Toast } from "@skeletonlabs/skeleton";
 	import { LightSwitch } from "@skeletonlabs/skeleton";
 	import Icon from "@iconify/svelte";
 	import { computePosition, autoUpdate, offset, shift, flip, arrow } from "@floating-ui/dom";
 	import { storePopup } from "@skeletonlabs/skeleton";
+	import { initializeStores } from "@skeletonlabs/skeleton";
+	import { enhance } from "$app/forms";
+
+	initializeStores();
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
@@ -16,6 +20,8 @@
 
 	export let data;
 </script>
+
+<Toast />
 
 <AppShell>
 	<svelte:fragment slot="pageHeader">
@@ -48,7 +54,7 @@
 					<div class="link-container">
 						<a href="/account">Account</a>
 					</div>
-					<form action="/logout" method="POST">
+					<form action="/logout" method="POST" use:enhance>
 						<button>Logout</button>
 					</form>
 				{:else}
@@ -112,7 +118,7 @@
 						<a href="/account">Account</a>
 					</div>
 				</AppRailTile>
-				<form action="/logout" method="POST">
+				<form action="/logout" method="POST" use:enhance>
 					<button class="sidebar-tile">Logout</button>
 				</form>
 			{:else}

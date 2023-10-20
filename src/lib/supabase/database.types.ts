@@ -35,12 +35,12 @@ export interface Database {
 					created_at: string | null;
 					creators: string[] | null;
 					fps: number[] | null;
-					gddp_id: string | null;
+					gdps_id: string | null;
 					id: number;
-					last_updated: string | null;
 					main_id: string | null;
 					minimum_progress: number | null;
 					name: string;
+					nong_download_link: string | null;
 					publisher: string;
 					rank: number;
 					verification_url: string;
@@ -50,12 +50,12 @@ export interface Database {
 					created_at?: string | null;
 					creators?: string[] | null;
 					fps?: number[] | null;
-					gddp_id?: string | null;
+					gdps_id?: string | null;
 					id?: number;
-					last_updated?: string | null;
 					main_id?: string | null;
 					minimum_progress?: number | null;
 					name: string;
+					nong_download_link?: string | null;
 					publisher: string;
 					rank: number;
 					verification_url: string;
@@ -65,12 +65,12 @@ export interface Database {
 					created_at?: string | null;
 					creators?: string[] | null;
 					fps?: number[] | null;
-					gddp_id?: string | null;
+					gdps_id?: string | null;
 					id?: number;
-					last_updated?: string | null;
 					main_id?: string | null;
 					minimum_progress?: number | null;
 					name?: string;
+					nong_download_link?: string | null;
 					publisher?: string;
 					rank?: number;
 					verification_url?: string;
@@ -198,17 +198,42 @@ export interface Database {
 					}
 				];
 			};
+			demons_history: {
+				Row: {
+					created_at: string;
+					id: number;
+					level: number | null;
+				};
+				Insert: {
+					created_at?: string;
+					id?: number;
+					level?: number | null;
+				};
+				Update: {
+					created_at?: string;
+					id?: number;
+					level?: number | null;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "demons_history_level_fkey";
+						columns: ["level"];
+						referencedRelation: "demons_list";
+						referencedColumns: ["id"];
+					}
+				];
+			};
 			demons_list: {
 				Row: {
 					created_at: string;
 					creators: string[] | null;
 					fps: number[] | null;
-					gddp_id: string | null;
+					gdps_id: string | null;
 					id: number;
-					last_updated: string | null;
 					main_id: string | null;
 					minimum_progress: number;
 					name: string;
+					nong_download_link: string | null;
 					publisher: string;
 					rank: number;
 					verification_url: string;
@@ -218,12 +243,12 @@ export interface Database {
 					created_at?: string;
 					creators?: string[] | null;
 					fps?: number[] | null;
-					gddp_id?: string | null;
+					gdps_id?: string | null;
 					id?: number;
-					last_updated?: string | null;
 					main_id?: string | null;
 					minimum_progress: number;
 					name: string;
+					nong_download_link?: string | null;
 					publisher: string;
 					rank: number;
 					verification_url: string;
@@ -233,12 +258,12 @@ export interface Database {
 					created_at?: string;
 					creators?: string[] | null;
 					fps?: number[] | null;
-					gddp_id?: string | null;
+					gdps_id?: string | null;
 					id?: number;
-					last_updated?: string | null;
 					main_id?: string | null;
 					minimum_progress?: number;
 					name?: string;
+					nong_download_link?: string | null;
 					publisher?: string;
 					rank?: number;
 					verification_url?: string;

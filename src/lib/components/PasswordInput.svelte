@@ -8,7 +8,7 @@
 </script>
 
 <label class="label">
-	<span>Password</span>
+	<span>{label} <span class="text-error-400-500-token">*</span></span>
 	<div class="password-input-container">
 		<input
 			class="input"
@@ -65,9 +65,4 @@
 		right: 0.8em;
 	}
 
-	.error {
-		color: rgba(var(--color-error-400-500-token) / 1);
-		font-size: 0.75rem;
-		line-height: 1.5;
-	}
 </style>
