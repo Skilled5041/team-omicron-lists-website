@@ -39,7 +39,7 @@
 		toastStore.trigger(successToast);
 	} else if (form?.databaseError) {
 		toastStore.trigger(databaseErrorToast);
-	} else {
+	} else if (form?.message) {
 		toastStore.trigger(errorToast);
 	}
 </script>
