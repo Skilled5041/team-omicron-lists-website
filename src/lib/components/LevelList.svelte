@@ -14,7 +14,7 @@
 	let isInView = new Map<string, boolean>();
 	levels?.forEach((level) => isInView.set(level.id.toString(), false));
 
-	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
+	const handleChange = ({ detail }: CustomEvent) => {
 		isInView.set(detail.node.id, detail.inView);
 		isInView = isInView;
 	};

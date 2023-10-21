@@ -31,8 +31,7 @@ export const load: PageServerLoad = async () => {
 	}
 
 	const filtered = demons_list?.filter((demon) => demon.rank !== null);
-	// @ts-ignore
-	filtered?.sort((a, b) => a.rank - b.rank);
+	filtered?.sort((a, b) => (a.rank as number) - (b.rank as number));
 
 	const mainlist = filtered?.slice(0, mainlist_count);
 	const extended_list = filtered?.slice(mainlist_count, mainlist_count + extended_list_count);
