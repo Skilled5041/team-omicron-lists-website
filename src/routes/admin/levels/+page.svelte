@@ -5,10 +5,12 @@
 	import { enhance } from "$app/forms";
 
 	export let form;
+	export let data;
 
 	let currentOperation: "insert" | "delete" | "edit" = "insert";
 	let creators: string[];
 	let fps: number[];
+	let selectedList = "demons";
 
 	const fpsValidation = (value: string) => {
 		const parsed = parseInt(value);
@@ -201,9 +203,29 @@
 				</div>
 			</label>
 		{:else if currentOperation === "delete"}
-			<label class="level">
-				Level:
-				<input type="number" name="level" class="input" />
+			<label class="pb-4">
+				<span class="pb-1 block">List <span class="text-error-400-500-token">*</span></span>
+				<select bind:value={selectedList} class="select mb-4" name="list" required>
+					<option value="demons">Demons</option>
+					<option value="challenge">Challenges</option>
+				</select>
+				<span class="pb-1 block">Level <span class="text-error-400-500-token">*</span></span
+				>
+				<select class="select" name="level" required>
+					{#if selectedList === "demons" && data.demons.length !== 0}
+						{#each data.demons as level}
+							<option value={level.id}
+								>{level.name} - {level.publisher} [{level.id}]</option
+							>
+						{/each}
+					{:else if data.challenges.length !== 0}
+						{#each data.challenges as level}
+							<option value={level.id}
+								>{level.name} - {level.publisher} [{level.id}]</option
+							>
+						{/each}
+					{/if}
+				</select>
 			</label>
 		{:else if currentOperation === "edit"}
 			<label class="level">

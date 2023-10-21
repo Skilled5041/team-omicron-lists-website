@@ -1,5 +1,6 @@
-import type { Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
 import { supabase } from "$lib/supabase/supabase";
+import { error } from "@sveltejs/kit";
 
 export const actions = {
 	submit: async ({ request }) => {
@@ -217,3 +218,21 @@ export const actions = {
 		}
 	}
 } satisfies Actions;
+
+export const load: PageServerLoad = async () => {
+	const { data: demons_list, error: error1 } = await supabase.from("demons_list").select("*");
+	const { data: challenge_list, error: error2 } = await supabase
+		.from("challenge_list")
+		.select("*");
+
+	if (error1 || error2) {
+		throw error(500, {
+			message: "Could not fetch list"
+		});
+	}
+
+	return {
+		demons: demons_list,
+		challenges: challenge_list
+	};
+};

@@ -2,8 +2,22 @@
 	import Icon from "@iconify/svelte";
 	import type { Database } from "$lib/supabase/database.types";
 	import { getYoutubeVideoId } from "$lib/youtube";
+	import { inview } from "svelte-inview";
+	import type { Options } from "svelte-inview";
 
 	export let levels: Database["public"]["Tables"]["demons_list"]["Row"][] | undefined;
+
+	const options: Options = {
+		rootMargin: "-50px"
+	};
+
+	let isInView = new Map<string, boolean>();
+	levels?.forEach((level) => isInView.set(level.id.toString(), false));
+
+	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
+		isInView.set(detail.node.id, detail.inView);
+		isInView = isInView;
+	};
 </script>
 
 {#if levels?.length === 0 || levels === undefined}
@@ -14,7 +28,13 @@
 {:else}
 	<div class="levels-list">
 		{#each levels.sort((level1, level2) => level1.rank - level2.rank) as level}
-			<div class="level-container">
+			<div
+				class="level-container"
+				use:inview={options}
+				on:inview_change={handleChange}
+				class:animate={isInView.get(level.id.toString())}
+				id={level.id.toString()}
+			>
 				<a href={level.verification_url} class="thumbnail">
 					<img
 						src={`https://img.youtube.com/vi/${getYoutubeVideoId(
@@ -37,149 +57,162 @@
 {/if}
 
 <style>
-	div :global(svg) {
-		font-size: 6rem;
-	}
+    div :global(svg) {
+        font-size: 6rem;
+    }
 
-	img {
-		width: 10rem;
-		object-fit: cover;
-		aspect-ratio: 16 / 9;
-	}
+    img {
+        width: 10rem;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+    }
 
-	.levels-list {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		margin-top: 2rem;
-	}
+    .levels-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
 
-	.error-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		line-height: 1.5;
-		gap: 1rem;
-		border-radius: 12px;
-		background-color: rgba(0, 0, 0, 0.3);
-		margin: 6% 35% 0 35%;
-		padding: 2% 5% 2% 5%;
-	}
+    .error-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        line-height: 1.5;
+        gap: 1rem;
+        border-radius: 12px;
+        background-color: rgba(0, 0, 0, 0.3);
+        margin: 6% 35% 0 35%;
+        padding: 2% 5% 2% 5%;
+    }
 
-	.level-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		line-height: 1.5;
-		gap: 2rem;
-		border-radius: 12px;
-		background-color: rgba(0, 0, 0, 0.3);
-		margin: 0 30% 0 30%;
-		padding: 1.5% 5% 1.5% 1.5%;
-	}
+    .level-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        line-height: 1.5;
+        gap: 2rem;
+        border-radius: 12px;
+        background-color: rgba(0, 0, 0, 0.3);
+        margin: 0 30% 0 30%;
+        padding: 1.5% 5% 1.5% 1.5%;
+        opacity: 0;
+        transform: perspective(1000px) rotateX(90deg) rotateY(20deg) scale(0.5);
+    }
 
-	.level-info {
-		display: flex;
-		flex-direction: column;
-	}
+    .level-container:hover {
+        transition: 200ms 0ms;
+        transform: scale(1.05);
+    }
 
-	.thumbnail {
-		display: block;
-		margin-right: 0;
-	}
+    .animate {
+        opacity: 100%;
+        transition: opacity 1000ms 100ms, transform 500ms;
+        transform: perspective(1000px) rotateX(0deg) scale(1);
+    }
 
-	.publisher {
-		opacity: 0.6;
-		font-size: 1.2rem;
-	}
+    .level-info {
+        display: flex;
+        flex-direction: column;
+    }
 
-	h1 {
-		font-size: 1.4rem;
-		font-weight: 700;
-	}
+    .thumbnail {
+        display: block;
+        margin-right: 0;
+    }
 
-	@media (max-width: 1650px) {
-		.error-container {
-			margin: 10% 30% 0 30%;
-			padding: 4% 8% 4% 8%;
-		}
+    .publisher {
+        opacity: 0.6;
+        font-size: 1.2rem;
+    }
 
-		.level-container {
-			margin: 0 20% 0 20%;
-			padding: 1.5% 5% 1.5% 1.5%;
-		}
+    h1 {
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
 
-		img {
-			width: 8.5rem;
-		}
-	}
+    @media (max-width: 1650px) {
+        .error-container {
+            margin: 10% 30% 0 30%;
+            padding: 4% 8% 4% 8%;
+        }
 
-	@media (max-width: 1400px) {
-		.error-container {
-			margin: 10% 15% 0 15%;
-			padding: 4% 8% 4% 8%;
-		}
+        .level-container {
+            margin: 0 20% 0 20%;
+            padding: 1.5% 5% 1.5% 1.5%;
+        }
 
-		.level-container {
-			margin: 0 20% 0 20%;
-			padding: 1.5% 5% 1.5% 1.5%;
-		}
+        img {
+            width: 8.5rem;
+        }
+    }
 
-		img {
-			width: 7rem;
-		}
+    @media (max-width: 1400px) {
+        .error-container {
+            margin: 10% 15% 0 15%;
+            padding: 4% 8% 4% 8%;
+        }
 
-		h1 {
-			font-size: 1.4rem;
-		}
-	}
+        .level-container {
+            margin: 0 20% 0 20%;
+            padding: 1.5% 5% 1.5% 1.5%;
+        }
 
-	@media (max-width: 1024px) {
-		.error-container {
-			margin: 10% 15% 0 15%;
-			padding: 4% 8% 4% 8%;
-		}
+        img {
+            width: 7rem;
+        }
 
-		.level-container {
-			margin: 0 10% 0 10%;
-			padding: 1.5% 5% 1.5% 1.5%;
-		}
+        h1 {
+            font-size: 1.4rem;
+        }
+    }
 
-		img {
-			width: 6rem;
-		}
+    @media (max-width: 1024px) {
+        .error-container {
+            margin: 10% 15% 0 15%;
+            padding: 4% 8% 4% 8%;
+        }
 
-		h1 {
-			font-size: 1.2rem;
-		}
+        .level-container {
+            margin: 0 10% 0 10%;
+            padding: 1.5% 5% 1.5% 1.5%;
+        }
 
-		.publisher {
-			font-size: 1rem;
-		}
-	}
+        img {
+            width: 6rem;
+        }
 
-	@media (max-width: 768px) {
-		.error-container {
-			margin: 10% 10% 0 10%;
-			padding: 4% 8% 4% 8%;
-		}
+        h1 {
+            font-size: 1.2rem;
+        }
 
-		.level-container {
-			margin: 0 5% 0 5%;
-			padding: 2% 5% 2% 2%;
-		}
+        .publisher {
+            font-size: 1rem;
+        }
+    }
 
-		img {
-			width: 6rem;
-		}
+    @media (max-width: 768px) {
+        .error-container {
+            margin: 10% 10% 0 10%;
+            padding: 4% 8% 4% 8%;
+        }
 
-		h1 {
-			font-size: 1rem;
-		}
+        .level-container {
+            margin: 0 5% 0 5%;
+            padding: 2% 5% 2% 2%;
+        }
 
-		.publisher {
-			font-size: 0.9rem;
-		}
-	}
+        img {
+            width: 6rem;
+        }
+
+        h1 {
+            font-size: 1rem;
+        }
+
+        .publisher {
+            font-size: 0.9rem;
+        }
+    }
 </style>
