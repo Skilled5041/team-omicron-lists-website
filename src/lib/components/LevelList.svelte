@@ -99,13 +99,13 @@
 		padding: 1.5% 5% 1.5% 1.5%;
 		opacity: 0;
 		filter: blur(12px);
-		transform: perspective(1000px) rotateX(90deg) rotateY(20deg) scale(0.5);
+		transform: rotateX(90deg) rotateY(20deg) scale(0.5);
 	}
 
 	.animate {
 		opacity: 100%;
 		transition: opacity 1000ms 100ms, transform 500ms;
-		transform: perspective(1000px) rotateX(0deg) scale(1) translateX(0);
+		transform: rotateX(0deg) scale(1) translateX(0);
 		filter: blur(0);
 	}
 

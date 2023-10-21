@@ -103,8 +103,8 @@
 				<span class="pb-1 block"
 					>Verification Video URL <span class="text-error-400-500-token">*</span></span
 				>
-				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-					<div class="input-group-shim">https://</div>
+				<span class="input-group input-group-divider flex flex-row items-center">
+					<span class="pl-4 pr-4 text-surface-600-300-token">https://</span>
 					<input
 						type="text"
 						name="verificationUrl"
@@ -112,7 +112,7 @@
 						placeholder="example.com"
 						required
 					/>
-				</div>
+				</span>
 				{#if form?.verificationUrlError}
 					<span class="text-error-400-500-token">{form.message}</span>
 				{/if}
@@ -137,9 +137,6 @@
 					placeholder="Publisher"
 					required
 				/>
-				{#if form?.publisherError}
-					<span class="text-error-400-500-token">{form.message}</span>
-				{/if}
 			</label>
 			<label class="pb-4">
 				<span class="pb-1 block"
@@ -197,10 +194,10 @@
 			</label>
 			<label class="pb-4">
 				<span class="pb-1 block">NONG Download URL</span>
-				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-					<div class="input-group-shim">https://</div>
+				<span class="input-group input-group-divider flex flex-row items-center">
+					<span class="pl-4 pr-4 text-surface-600-300-token">https://</span>
 					<input type="text" name="nongUrl" class="input" placeholder="example.com" />
-				</div>
+				</span>
 			</label>
 		{:else if currentOperation === "delete"}
 			<label class="pb-4">
