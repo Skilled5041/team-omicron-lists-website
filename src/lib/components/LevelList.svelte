@@ -159,6 +159,7 @@
 		.level-container {
 			margin: 0 20% 0 20%;
 			padding: 1.5% 5% 1.5% 1.5%;
+			transform: translateX(-200px);
 		}
 
 		img {
@@ -179,6 +180,7 @@
 		.level-container {
 			margin: 0 10% 0 10%;
 			padding: 1.5% 5% 1.5% 1.5%;
+			transform: translateX(-200px);
 		}
 
 		img {
@@ -203,6 +205,7 @@
 		.level-container {
 			margin: 0 5% 0 5%;
 			padding: 2% 5% 2% 2%;
+			transform: translateX(-100px);
 		}
 
 		img {

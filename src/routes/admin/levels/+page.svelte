@@ -227,25 +227,146 @@
 				</select>
 			</label>
 		{:else if currentOperation === "edit"}
-			<label class="level">
-				Level:
-				<input type="number" name="level" class="input" />
+			<label class="pb-4">
+				<span class="pb-1 block">List <span class="text-error-400-500-token">*</span></span>
+				<select class="select" name="list">
+					<option value="demons">Demons</option>
+					<option value="challenge">Challenges</option>
+				</select>
 			</label>
-			<label class="name">
-				Name:
-				<input type="text" name="name" class="input" />
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Level Name <span class="text-error-400-500-token">*</span></span
+				>
+				<input
+						type="text"
+						name="levelName"
+						class="input"
+						placeholder="Level Name"
+						required
+				/>
 			</label>
-			<label class="description">
-				Description:
-				<input type="text" name="description" class="input" />
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Main Server ID <span class="text-error-400-500-token">*</span></span
+				>
+				<input
+						type="text"
+						name="mainId"
+						class="input"
+						placeholder="Main Server ID"
+						required
+				/>
+				{#if form?.mainIdError}
+					<span class="text-error-400-500-token">{form.message}</span>
+				{/if}
 			</label>
-			<label class="points">
-				Points:
-				<input type="number" name="points" class="input" />
+			<label class="pb-4">
+				<span class="pb-1 block">GDPS Server ID</span>
+				<input type="text" name="gdpsId" class="input" placeholder="GDDPS Server ID" />
+				{#if form?.gdpsIdError}
+					<span class="text-error-400-500-token">{form.message}</span>
+				{/if}
 			</label>
-			<label class="flag">
-				Flag:
-				<input type="text" name="flag" class="input" />
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Verification Video URL <span class="text-error-400-500-token">*</span></span
+				>
+				<span class="input-group input-group-divider flex flex-row items-center">
+					<span class="pl-4 pr-4 text-surface-600-300-token">https://</span>
+					<input
+							type="text"
+							name="verificationUrl"
+							class="input"
+							placeholder="example.com"
+							required
+					/>
+				</span>
+				{#if form?.verificationUrlError}
+					<span class="text-error-400-500-token">{form.message}</span>
+				{/if}
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Verifier <span class="text-error-400-500-token">*</span></span
+				>
+				<input type="text" name="verifier" class="input" placeholder="Verifier" required />
+				{#if form?.verifierError}
+					<span class="text-error-400-500-token">{form.message}</span>
+				{/if}
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Publisher <span class="text-error-400-500-token">*</span></span
+				>
+				<input
+						type="text"
+						name="publisher"
+						class="input"
+						placeholder="Publisher"
+						required
+				/>
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Creators <span class="text-error-400-500-token">*</span></span
+				>
+				<InputChip
+						bind:value={creators}
+						name="creators"
+						placeholder="Enter creators:"
+						min={1}
+						allowUpperCase
+						required
+				/>
+				<!-- Gets rid of IDE warning -->
+				<input class="hidden" />
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block">Rank <span class="text-error-400-500-token">*</span></span>
+				<input
+						type="number"
+						name="rank"
+						min={1}
+						class="input"
+						placeholder="Rank"
+						required
+				/>
+				{#if form?.rankError}
+					<span class="text-error-400-500-token">{form.message}</span>
+				{/if}
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block"
+				>Minimum List Percentage <span class="text-error-400-500-token">*</span></span
+				>
+				<input
+						type="number"
+						name="minimumPercentage"
+						min={1}
+						max={99}
+						class="input"
+						placeholder="Minimum List Percentage"
+						required
+				/>
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block">FPS (leave empty for any)</span>
+				<InputChip
+						bind:value={fps}
+						name="fps"
+						placeholder="Enter FPS"
+						validation={fpsValidation}
+				/>
+				<!-- Gets rid of IDE warning -->
+				<input class="hidden" />
+			</label>
+			<label class="pb-4">
+				<span class="pb-1 block">NONG Download URL</span>
+				<span class="input-group input-group-divider flex flex-row items-center">
+					<span class="pl-4 pr-4 text-surface-600-300-token">https://</span>
+					<input type="text" name="nongUrl" class="input" placeholder="example.com" />
+				</span>
 			</label>
 		{/if}
 		<button class="btn variant-filled-primary w-full mt-4 mb-4" type="submit">Submit</button>
