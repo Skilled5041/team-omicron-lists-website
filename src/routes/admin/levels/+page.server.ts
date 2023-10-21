@@ -317,6 +317,125 @@ export const actions = {
 				return {
 					success: true
 				};
+			} else if (list === "challenge") {
+				const { error: levelError, data: level } = await supabase
+					.from("challenge_list")
+					.select("*")
+					.eq("id", levelId);
+
+				if (levelError) {
+					console.log(levelError);
+					return {
+						databaseError: true,
+						message: levelError.message
+					};
+				}
+
+				if (level === null || level.length === 0) {
+					return {
+						message: "Level not found"
+					};
+				}
+
+				if (level[0].rank === null) {
+					return {
+						message: "Level is not ranked"
+					};
+				}
+
+				const { error: deleteError } = await supabase
+					.from("challenge_list")
+					.update({
+						deleted: true,
+						rank: null
+					})
+					.eq("id", levelId);
+
+				if (deleteError) {
+					console.log(deleteError);
+					return {
+						databaseError: true,
+						message: deleteError.message
+					};
+				}
+
+				const { error: historyError } = await supabase
+					.from("challenge_list_history")
+					.insert({
+						level: level[0].id,
+						operation: "delete",
+						change: level[0].rank
+					});
+
+				if (historyError) {
+					console.log(historyError);
+					return {
+						databaseError: true,
+						message: historyError.message
+					};
+				}
+
+				const { error: getTotalCountError, data: listInfo } = await supabase
+					.from("challenge_list_info")
+					.select("*");
+
+				if (getTotalCountError) {
+					console.log(getTotalCountError);
+					return {
+						databaseError: true,
+						message: getTotalCountError.message
+					};
+				}
+
+				const { error: decrementError } = await supabase
+					.from("challenge_list_info")
+					.update({
+						total_count: listInfo[0].total_count - 1
+					})
+					.eq("id", 1);
+
+				if (decrementError) {
+					console.log(decrementError);
+					return {
+						databaseError: true,
+						message: decrementError.message
+					};
+				}
+
+				// Decrement the ranks of all levels above the deleted level
+				const { error: getLevelsError, data: levels } = await supabase
+					.from("challenge_list")
+					.select("*")
+					.gt("rank", level[0].rank);
+
+				if (getLevelsError) {
+					console.log(getLevelsError);
+					return {
+						databaseError: true,
+						message: getLevelsError.message
+					};
+				}
+
+				for (const level of levels?.filter((level) => level.rank !== null) ?? []) {
+					const { error: updateError } = await supabase
+						.from("challenge_list")
+						.update({
+							rank: (level.rank as number) - 1
+						})
+						.eq("id", level.id);
+
+					if (updateError) {
+						console.log(updateError);
+						return {
+							databaseError: true,
+							message: updateError.message
+						};
+					}
+				}
+
+				return {
+					success: true
+				};
 			}
 		}
 	}
