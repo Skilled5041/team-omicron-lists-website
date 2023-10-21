@@ -27,7 +27,7 @@
 	</div>
 {:else}
 	<div class="levels-list">
-		{#each levels.sort((level1, level2) => level1.rank - level2.rank) as level}
+		{#each levels as level}
 			<div
 				class="level-container"
 				use:inview={options}
