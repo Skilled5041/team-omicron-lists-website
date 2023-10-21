@@ -162,6 +162,13 @@
 			transform: translateX(-200px);
 		}
 
+		.animate {
+			opacity: 100%;
+			transition: opacity 700ms 100ms, transform 400ms, filter 400ms;
+			transform: rotateX(0deg) scale(1) translateX(0);
+			filter: blur(0);
+		}
+
 		img {
 			width: 7rem;
 		}
@@ -181,6 +188,13 @@
 			margin: 0 10% 0 10%;
 			padding: 1.5% 5% 1.5% 1.5%;
 			transform: translateX(-200px);
+		}
+
+		.animate {
+			opacity: 100%;
+			transition: opacity 700ms 100ms, transform 400ms, filter 400ms;
+			transform: rotateX(0deg) scale(1) translateX(0);
+			filter: blur(0);
 		}
 
 		img {
@@ -206,6 +220,13 @@
 			margin: 0 5% 0 5%;
 			padding: 2% 5% 2% 2%;
 			transform: translateX(-100px);
+		}
+
+		.animate {
+			opacity: 100%;
+			transition: opacity 700ms 100ms, transform 400ms, filter 400ms;
+			transform: rotateX(0deg) scale(1) translateX(0);
+			filter: blur(0);
 		}
 
 		img {
