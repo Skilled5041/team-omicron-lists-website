@@ -21,17 +21,17 @@
 	const toastStore = getToastStore();
 
 	const successToast: ToastSettings = {
-		message: "The operation is	 successful!",
+		message: "The operation is successful!",
 		timeout: 2500
 	};
 
-	const databaseErrorToast: ToastSettings = {
+	let databaseErrorToast: ToastSettings = {
 		message: `Error: ${form?.message}`,
 		timeout: 2500,
 		classes: "bg-error-400-500-token"
 	};
 
-	const errorToast: ToastSettings = {
+	let errorToast: ToastSettings = {
 		message: `Error: ${form?.message}`,
 		timeout: 2500,
 		classes: "bg-error-400-500-token"
@@ -40,14 +40,16 @@
 	$: if (form?.success) {
 		toastStore.trigger(successToast);
 	} else if (form?.databaseError) {
+		databaseErrorToast = databaseErrorToast;
 		toastStore.trigger(databaseErrorToast);
 	} else if (form?.message) {
+		errorToast = errorToast;
 		toastStore.trigger(errorToast);
 	}
 </script>
 
 <div class="form-container">
-	<h1 class="text-xl pb-4 text-center">Insert, delete, or modify challenge list levels</h1>
+	<h1 class="text-xl pb-4 text-center">Insert, delete, or modify list levels</h1>
 	<form action="?/submit" method="POST" use:enhance>
 		<label class="pb-4">
 			<span class="pb-2 block">Operation</span>
@@ -212,14 +214,14 @@
 					{#if selectedList === "demons" && data.demons.length !== 0}
 						{#each data.demons as level}
 							<option value={level.id}
-								>{level.name} - {level.publisher} [{level.id}]</option
-							>
+								>{level.name} - {level.publisher} [{level.id}]
+							</option>
 						{/each}
 					{:else if data.challenges.length !== 0}
 						{#each data.challenges as level}
 							<option value={level.id}
-								>{level.name} - {level.publisher} [{level.id}]</option
-							>
+								>{level.name} - {level.publisher} [{level.id}]
+							</option>
 						{/each}
 					{/if}
 				</select>

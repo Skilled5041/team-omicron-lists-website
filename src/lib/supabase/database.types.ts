@@ -34,6 +34,7 @@ export interface Database {
 				Row: {
 					created_at: string | null;
 					creators: string[] | null;
+					deleted: boolean;
 					fps: number[] | null;
 					gdps_id: string | null;
 					id: number;
@@ -42,13 +43,14 @@ export interface Database {
 					name: string;
 					nong_download_link: string | null;
 					publisher: string;
-					rank: number;
+					rank: number | null;
 					verification_url: string;
 					verifier: string | null;
 				};
 				Insert: {
 					created_at?: string | null;
 					creators?: string[] | null;
+					deleted?: boolean;
 					fps?: number[] | null;
 					gdps_id?: string | null;
 					id?: number;
@@ -57,13 +59,14 @@ export interface Database {
 					name: string;
 					nong_download_link?: string | null;
 					publisher: string;
-					rank: number;
+					rank?: number | null;
 					verification_url: string;
 					verifier?: string | null;
 				};
 				Update: {
 					created_at?: string | null;
 					creators?: string[] | null;
+					deleted?: boolean;
 					fps?: number[] | null;
 					gdps_id?: string | null;
 					id?: number;
@@ -72,7 +75,7 @@ export interface Database {
 					name?: string;
 					nong_download_link?: string | null;
 					publisher?: string;
-					rank?: number;
+					rank?: number | null;
 					verification_url?: string;
 					verifier?: string | null;
 				};
@@ -227,6 +230,7 @@ export interface Database {
 				Row: {
 					created_at: string;
 					creators: string[] | null;
+					deleted: boolean;
 					fps: number[] | null;
 					gdps_id: string | null;
 					id: number;
@@ -235,13 +239,14 @@ export interface Database {
 					name: string;
 					nong_download_link: string | null;
 					publisher: string;
-					rank: number;
+					rank: number | null;
 					verification_url: string;
 					verifier: string | null;
 				};
 				Insert: {
 					created_at?: string;
 					creators?: string[] | null;
+					deleted?: boolean;
 					fps?: number[] | null;
 					gdps_id?: string | null;
 					id?: number;
@@ -250,13 +255,14 @@ export interface Database {
 					name: string;
 					nong_download_link?: string | null;
 					publisher: string;
-					rank: number;
+					rank?: number | null;
 					verification_url: string;
 					verifier?: string | null;
 				};
 				Update: {
 					created_at?: string;
 					creators?: string[] | null;
+					deleted?: boolean;
 					fps?: number[] | null;
 					gdps_id?: string | null;
 					id?: number;
@@ -265,7 +271,7 @@ export interface Database {
 					name?: string;
 					nong_download_link?: string | null;
 					publisher?: string;
-					rank?: number;
+					rank?: number | null;
 					verification_url?: string;
 					verifier?: string | null;
 				};

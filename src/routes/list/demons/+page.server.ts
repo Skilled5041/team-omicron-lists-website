@@ -30,11 +30,13 @@ export const load: PageServerLoad = async () => {
 		});
 	}
 
-	demons_list?.sort((a, b) => a.rank - b.rank);
+	const filtered = demons_list?.filter((demon) => demon.rank !== null);
+	// @ts-ignore
+	filtered?.sort((a, b) => a.rank - b.rank);
 
-	const mainlist = demons_list?.slice(0, mainlist_count);
-	const extended_list = demons_list?.slice(mainlist_count, mainlist_count + extended_list_count);
-	const legacy_list = demons_list?.slice(mainlist_count + extended_list_count);
+	const mainlist = filtered?.slice(0, mainlist_count);
+	const extended_list = filtered?.slice(mainlist_count, mainlist_count + extended_list_count);
+	const legacy_list = filtered?.slice(mainlist_count + extended_list_count);
 
 	return {
 		status: 200,
