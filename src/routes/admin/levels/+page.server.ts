@@ -58,25 +58,6 @@ export const actions = {
 			}
 
 			const publisher = formData.get("publisher") as string;
-			const { data: publisherProfiles, error: publisherError } = await supabase
-				.from("profiles")
-				.select("*")
-				.ilike("username", publisher);
-
-			if (publisherError) {
-				console.log(publisherError);
-				return {
-					databaseError: true,
-					message: publisherError.message
-				};
-			}
-
-			if (publisherProfiles.length === 0) {
-				return {
-					publisherError: true,
-					message: "Invalid publisher"
-				};
-			}
 
 			const creatorsString = formData.get("creators") as string;
 			const creators = creatorsString.split(",");
@@ -147,7 +128,7 @@ export const actions = {
 					{
 						rank: rank,
 						name: levelName as string,
-						publisher: publisherProfiles[0].username,
+						publisher: publisher as string,
 						fps: parsedFps,
 						verifier: profiles[0].username,
 						nong_download_link: nongUrl as string | null,

@@ -8,7 +8,7 @@
 	export let levels: Database["public"]["Tables"]["demons_list"]["Row"][] | undefined;
 
 	const options: Options = {
-		rootMargin: "-50px"
+		rootMargin: "100px"
 	};
 
 	let isInView = new Map<string, boolean>();
@@ -57,162 +57,164 @@
 {/if}
 
 <style>
-    div :global(svg) {
-        font-size: 6rem;
-    }
+	div :global(svg) {
+		font-size: 6rem;
+	}
 
-    img {
-        width: 10rem;
-        object-fit: cover;
-        aspect-ratio: 16 / 9;
-    }
+	img {
+		width: 10rem;
+		object-fit: cover;
+		aspect-ratio: 16 / 9;
+	}
 
-    .levels-list {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        margin-top: 2rem;
-    }
+	.levels-list {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
 
-    .error-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        line-height: 1.5;
-        gap: 1rem;
-        border-radius: 12px;
-        background-color: rgba(0, 0, 0, 0.3);
-        margin: 6% 35% 0 35%;
-        padding: 2% 5% 2% 5%;
-    }
+	.error-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		line-height: 1.5;
+		gap: 1rem;
+		border-radius: 12px;
+		background-color: rgba(0, 0, 0, 0.3);
+		margin: 6% 35% 0 35%;
+		padding: 2% 5% 2% 5%;
+	}
 
-    .level-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        line-height: 1.5;
-        gap: 2rem;
-        border-radius: 12px;
-        background-color: rgba(0, 0, 0, 0.3);
-        margin: 0 30% 0 30%;
-        padding: 1.5% 5% 1.5% 1.5%;
-        opacity: 0;
-        transform: perspective(1000px) rotateX(90deg) rotateY(20deg) scale(0.5);
-    }
+	.level-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		line-height: 1.5;
+		gap: 2rem;
+		border-radius: 12px;
+		background-color: rgba(0, 0, 0, 0.3);
+		margin: 0 30% 0 30%;
+		padding: 1.5% 5% 1.5% 1.5%;
+		opacity: 0;
+		filter: blur(12px);
+		transform: perspective(1000px) rotateX(90deg) rotateY(20deg) scale(0.5);
+	}
 
-    .level-container:hover {
-        transition: 200ms 0ms;
-        transform: scale(1.05);
-    }
+	.animate {
+		opacity: 100%;
+		transition: opacity 1000ms 100ms, transform 500ms;
+		transform: perspective(1000px) rotateX(0deg) scale(1) translateX(0);
+		filter: blur(0);
+	}
 
-    .animate {
-        opacity: 100%;
-        transition: opacity 1000ms 100ms, transform 500ms;
-        transform: perspective(1000px) rotateX(0deg) scale(1);
-    }
+	.level-container:hover {
+		transition: 200ms 0ms;
+		transform: scale(1.05);
+	}
 
-    .level-info {
-        display: flex;
-        flex-direction: column;
-    }
+	.level-info {
+		display: flex;
+		flex-direction: column;
+	}
 
-    .thumbnail {
-        display: block;
-        margin-right: 0;
-    }
+	.thumbnail {
+		display: block;
+		margin-right: 0;
+	}
 
-    .publisher {
-        opacity: 0.6;
-        font-size: 1.2rem;
-    }
+	.publisher {
+		opacity: 0.6;
+		font-size: 1.2rem;
+	}
 
-    h1 {
-        font-size: 1.4rem;
-        font-weight: 700;
-    }
+	h1 {
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
 
-    @media (max-width: 1650px) {
-        .error-container {
-            margin: 10% 30% 0 30%;
-            padding: 4% 8% 4% 8%;
-        }
+	@media (max-width: 1650px) {
+		.error-container {
+			margin: 10% 30% 0 30%;
+			padding: 4% 8% 4% 8%;
+		}
 
-        .level-container {
-            margin: 0 20% 0 20%;
-            padding: 1.5% 5% 1.5% 1.5%;
-        }
+		.level-container {
+			margin: 0 20% 0 20%;
+			padding: 1.5% 5% 1.5% 1.5%;
+		}
 
-        img {
-            width: 8.5rem;
-        }
-    }
+		img {
+			width: 8.5rem;
+		}
+	}
 
-    @media (max-width: 1400px) {
-        .error-container {
-            margin: 10% 15% 0 15%;
-            padding: 4% 8% 4% 8%;
-        }
+	@media (max-width: 1400px) {
+		.error-container {
+			margin: 10% 15% 0 15%;
+			padding: 4% 8% 4% 8%;
+		}
 
-        .level-container {
-            margin: 0 20% 0 20%;
-            padding: 1.5% 5% 1.5% 1.5%;
-        }
+		.level-container {
+			margin: 0 20% 0 20%;
+			padding: 1.5% 5% 1.5% 1.5%;
+		}
 
-        img {
-            width: 7rem;
-        }
+		img {
+			width: 7rem;
+		}
 
-        h1 {
-            font-size: 1.4rem;
-        }
-    }
+		h1 {
+			font-size: 1.4rem;
+		}
+	}
 
-    @media (max-width: 1024px) {
-        .error-container {
-            margin: 10% 15% 0 15%;
-            padding: 4% 8% 4% 8%;
-        }
+	@media (max-width: 1024px) {
+		.error-container {
+			margin: 10% 15% 0 15%;
+			padding: 4% 8% 4% 8%;
+		}
 
-        .level-container {
-            margin: 0 10% 0 10%;
-            padding: 1.5% 5% 1.5% 1.5%;
-        }
+		.level-container {
+			margin: 0 10% 0 10%;
+			padding: 1.5% 5% 1.5% 1.5%;
+		}
 
-        img {
-            width: 6rem;
-        }
+		img {
+			width: 6rem;
+		}
 
-        h1 {
-            font-size: 1.2rem;
-        }
+		h1 {
+			font-size: 1.2rem;
+		}
 
-        .publisher {
-            font-size: 1rem;
-        }
-    }
+		.publisher {
+			font-size: 1rem;
+		}
+	}
 
-    @media (max-width: 768px) {
-        .error-container {
-            margin: 10% 10% 0 10%;
-            padding: 4% 8% 4% 8%;
-        }
+	@media (max-width: 768px) {
+		.error-container {
+			margin: 10% 10% 0 10%;
+			padding: 4% 8% 4% 8%;
+		}
 
-        .level-container {
-            margin: 0 5% 0 5%;
-            padding: 2% 5% 2% 2%;
-        }
+		.level-container {
+			margin: 0 5% 0 5%;
+			padding: 2% 5% 2% 2%;
+		}
 
-        img {
-            width: 6rem;
-        }
+		img {
+			width: 6rem;
+		}
 
-        h1 {
-            font-size: 1rem;
-        }
+		h1 {
+			font-size: 1rem;
+		}
 
-        .publisher {
-            font-size: 0.9rem;
-        }
-    }
+		.publisher {
+			font-size: 0.9rem;
+		}
+	}
 </style>

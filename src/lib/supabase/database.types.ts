@@ -78,12 +78,6 @@ export interface Database {
 				};
 				Relationships: [
 					{
-						foreignKeyName: "challenge_list_publisher_fkey";
-						columns: ["publisher"];
-						referencedRelation: "profiles";
-						referencedColumns: ["username"];
-					},
-					{
 						foreignKeyName: "challenge_list_verifier_fkey";
 						columns: ["verifier"];
 						referencedRelation: "profiles";
@@ -229,31 +223,6 @@ export interface Database {
 					}
 				];
 			};
-			demons_history: {
-				Row: {
-					created_at: string;
-					id: number;
-					level: number | null;
-				};
-				Insert: {
-					created_at?: string;
-					id?: number;
-					level?: number | null;
-				};
-				Update: {
-					created_at?: string;
-					id?: number;
-					level?: number | null;
-				};
-				Relationships: [
-					{
-						foreignKeyName: "demons_history_level_fkey";
-						columns: ["level"];
-						referencedRelation: "demons_list";
-						referencedColumns: ["id"];
-					}
-				];
-			};
 			demons_list: {
 				Row: {
 					created_at: string;
@@ -301,12 +270,6 @@ export interface Database {
 					verifier?: string | null;
 				};
 				Relationships: [
-					{
-						foreignKeyName: "demons_list_publisher_fkey";
-						columns: ["publisher"];
-						referencedRelation: "profiles";
-						referencedColumns: ["username"];
-					},
 					{
 						foreignKeyName: "demons_list_verifier_fkey";
 						columns: ["verifier"];
