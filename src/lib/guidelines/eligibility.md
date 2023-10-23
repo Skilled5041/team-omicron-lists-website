@@ -46,7 +46,7 @@ Bugs that result in physics changes from different versions of the game may be f
 ## Eligibility of Hacks
 A player may not submit a record obtained using hacks that alter or bypass the gameplay, such as noclip, speed hacks, or bots.
 
-Players may not use FPS bypass to change the FPS in the middle of an attempt. This applies to oter hacks that may affect the difficulty of a level. All records that involve enabling or disabling hacks to change the difficulty of a level will be rejected.
+Players may not use FPS bypass to change the FPS in the middle of an attempt. This applies to other hacks that may affect the difficulty of a level. All records that involve enabling or disabling hacks to change the difficulty of a level will be rejected.
 
 ## Mega Hack v7
 Players who use Mega Hack v7 must have Cheat Indicator enabled, and the built-in FPS counter enabled.
