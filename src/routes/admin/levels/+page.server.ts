@@ -454,7 +454,7 @@ export const load: PageServerLoad = async () => {
 	}
 
 	return {
-		demons: demons_list?.filter((demon) => !demon.deleted),
-		challenges: challenge_list?.filter((challenge) => !challenge.deleted)
+		demons: demons_list,
+		challenges: challenge_list
 	};
 };
