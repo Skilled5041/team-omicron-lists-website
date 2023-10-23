@@ -28,24 +28,27 @@
     let databaseErrorToast: ToastSettings = {
         message: `Error: ${form?.message}`,
         timeout: 2500,
+        autohide: false,
         classes: "bg-error-400-500-token"
     };
 
     let errorToast: ToastSettings = {
         message: `Error: ${form?.message}`,
         timeout: 2500,
+        autohide: false,
         classes: "bg-error-400-500-token"
     };
 
     $: if (form?.success) {
         toastStore.trigger(successToast);
     } else if (form?.databaseError) {
-        databaseErrorToast = databaseErrorToast;
+        databaseErrorToast.message = `Error: ${form.message}`;
         toastStore.trigger(databaseErrorToast);
     } else if (form?.message) {
-        errorToast = errorToast;
+        errorToast.message = `Error: ${form.message}`;
         toastStore.trigger(errorToast);
     }
+    let deleteOrRestore: string;
 </script>
 
 <div class="form-container">
@@ -203,6 +206,13 @@
             </label>
         {:else if currentOperation === "delete"}
             <label class="pb-4">
+                <span class="pb-1 block">Delete or Restore</span>
+                <select class="select" name="deleteOrRestore" bind:value={deleteOrRestore}>
+                    <option value="delete"> Delete</option>
+                    <option value="restore">Restore</option>
+                </select>
+            </label>
+            <label class="pb-4">
                 <span class="pb-1 block">List <span class="text-error-400-500-token">*</span></span>
                 <select bind:value={selectedList} class="select mb-4" name="list" required>
                     <option value="demons">Demons</option>
@@ -212,27 +222,51 @@
                 >
                 <select class="select" name="level" required>
                     {#if selectedList === "demons" && data.demons.length !== 0}
-                        {#each data.demons as level}
-                            <option value={level.id}
-                            >{level.name} - {level.publisher} (Main ID: {level.main_id})
-                            </option>
-                        {/each}
+                        {#if deleteOrRestore === "delete"}
+                            {#each data.demons.filter(demon => !demon.deleted) as level}
+                                <option value={level.id}
+                                >{level.name} - {level.publisher} (Main ID: {level.main_id})
+                                </option>
+                            {/each}
+                        {:else}
+                            {#each data.demons.filter(demon => demon.deleted) as level}
+                                <option value={level.id}
+                                >{level.name} - {level.publisher} (Main ID: {level.main_id})
+                                </option>
+                            {/each}
+                        {/if}
                     {:else if data.challenges.length !== 0}
-                        {#each data.challenges as level}
-                            <option value={level.id}
-                            >{level.name} - {level.publisher} [{level.id}]
-                            </option>
-                        {/each}
+                        {#if deleteOrRestore === "delete"}
+                            {#each data.challenges.filter(demon => !demon.deleted) as level}
+                                <option value={level.id}
+                                >{level.name} - {level.publisher} (Main ID: {level.main_id})
+                                </option>
+                            {/each}
+                        {:else}
+                            {#each data.challenges.filter(demon => demon.deleted) as level}
+                                <option value={level.id}
+                                >{level.name} - {level.publisher} (Main ID: {level.main_id})
+                                </option>
+                            {/each}
+                        {/if}
                     {/if}
                 </select>
             </label>
-            <label>
-                <span class="pb-1 block">Delete or Restore</span>
-                <select class="select" name="deleteOrRestore">
-                    <option value="delete"> Delete</option>
-                    <option value="restore">Restore</option>
-                </select>
-            </label>
+            {#if deleteOrRestore === "restore"}
+                <label class="pb-4">
+                    <span class="pb-1 block">Rank</span>
+                    <input
+                            type="number"
+                            name="rank"
+                            min={1}
+                            class="input"
+                            placeholder="Rank"
+                    />
+                    {#if form?.rankError}
+                        <span class="text-error-400-500-token">{form.message}</span>
+                    {/if}
+                </label>
+            {/if}
         {:else if currentOperation === "edit"}
             <label>
                 <span class="pb-1 block">List <span class="text-error-400-500-token">*</span></span>
