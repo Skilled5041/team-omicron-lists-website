@@ -15,26 +15,8 @@ export const load: PageServerLoad = async ({ params }) => {
 		});
 	}
 
-	const { data: demons_list, error: error1 } = await supabase
-		.from("demons_list")
-		.select("*")
-		.eq("rank", params.rank);
-
-	const { data: demons_list_info, error: error2 } = await supabase
-		.from("demons_list_info")
-		.select("total_count,mainlist_count,extended_list_count");
-
-	if (error1 || error2 || !demons_list) {
-		throw error(500, {
-			message: "Could not fetch level info"
-		});
-	}
-
-	if (demons_list.length === 0) {
-		throw error(404, {
-			message: "Not found"
-		});
-	}
+	const response = await fetch(`/api/list/demons/level/${params.rank}`);
+	const demonInfo = await response.json();
 
 	return {
 		status: 200,

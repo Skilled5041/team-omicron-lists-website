@@ -99,7 +99,7 @@
 		padding: 1.5% 5% 1.5% 1.5%;
 		opacity: 0;
 		filter: blur(12px);
-		transform: translateX(-400px);
+		transform: translateX(-400px) scale(0.8);
 	}
 
 	.animate {
@@ -239,6 +239,16 @@
 
 		.publisher {
 			font-size: 0.9rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.level-container {
+			transition: none;
+		}
+
+		.animate {
+			transition: none;
 		}
 	}
 </style>
