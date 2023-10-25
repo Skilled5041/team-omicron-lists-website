@@ -199,230 +199,276 @@ export const actions = {
 		} else if (operation === "delete") {
 			const list = formData.get("list") as string;
 			const levelId = formData.get("level") as string;
+			const deleteOrRestore = formData.get("deleteOrRestore") as string;
 
-			if (list == "demons") {
-				const { error: levelError, data: level } = await supabase
-					.from("demons_list")
-					.select("*")
-					.eq("id", levelId);
+			if (deleteOrRestore === "delete") {
+				if (list == "demons") {
+					const { error: levelError, data: level } = await supabase
+						.from("demons_list")
+						.select("*")
+						.eq("id", levelId);
 
-				if (levelError) {
-					console.log(levelError);
-					return {
-						databaseError: true,
-						message: levelError.message
-					};
-				}
+					if (levelError) {
+						console.log(levelError);
+						return {
+							databaseError: true,
+							message: levelError.message
+						};
+					}
 
-				if (level === null || level.length === 0) {
-					return {
-						message: "Level not found"
-					};
-				}
+					if (level === null || level.length === 0) {
+						return {
+							message: "Level not found"
+						};
+					}
 
-				if (level[0].rank === null) {
-					return {
-						message: "Level is not ranked"
-					};
-				}
+					if (level[0].rank === null) {
+						return {
+							message: "Level is not ranked"
+						};
+					}
 
-				const { error: deleteError } = await supabase
-					.from("demons_list")
-					.update({
-						deleted: true,
-						rank: null
-					})
-					.eq("id", levelId);
-
-				if (deleteError) {
-					console.log(deleteError);
-					return {
-						databaseError: true,
-						message: deleteError.message
-					};
-				}
-
-				const { error: historyError } = await supabase.from("demons_list_history").insert({
-					level: level[0].id,
-					operation: "delete",
-					change: level[0].rank
-				});
-
-				if (historyError) {
-					console.log(historyError);
-					return {
-						databaseError: true,
-						message: historyError.message
-					};
-				}
-
-				const { error: getTotalCountError, data: listInfo } = await supabase
-					.from("demons_list_info")
-					.select("*");
-
-				if (getTotalCountError) {
-					console.log(getTotalCountError);
-					return {
-						databaseError: true,
-						message: getTotalCountError.message
-					};
-				}
-
-				const { error: decrementError } = await supabase
-					.from("demons_list_info")
-					.update({
-						total_count: listInfo[0].total_count - 1
-					})
-					.eq("id", 1);
-
-				if (decrementError) {
-					console.log(decrementError);
-					return {
-						databaseError: true,
-						message: decrementError.message
-					};
-				}
-
-				// Decrement the ranks of all levels above the deleted level
-				const { error: getLevelsError, data: levels } = await supabase
-					.from("demons_list")
-					.select("*")
-					.gt("rank", level[0].rank);
-
-				if (getLevelsError) {
-					console.log(getLevelsError);
-					return {
-						databaseError: true,
-						message: getLevelsError.message
-					};
-				}
-
-				for (const level of levels?.filter((level) => level.rank !== null) ?? []) {
-					const { error: updateError } = await supabase
+					const { error: deleteError } = await supabase
 						.from("demons_list")
 						.update({
-							rank: (level.rank as number) - 1
+							deleted: true,
+							rank: null
 						})
-						.eq("id", level.id);
+						.eq("id", levelId);
 
-					if (updateError) {
-						console.log(updateError);
+					if (deleteError) {
+						console.log(deleteError);
 						return {
 							databaseError: true,
-							message: updateError.message
+							message: deleteError.message
 						};
 					}
-				}
 
-				return {
-					success: true
-				};
-			} else if (list === "challenge") {
-				const { error: levelError, data: level } = await supabase
-					.from("challenge_list")
-					.select("*")
-					.eq("id", levelId);
+					const { error: historyError } = await supabase
+						.from("demons_list_history")
+						.insert({
+							level: level[0].id,
+							operation: "delete",
+							change: level[0].rank
+						});
 
-				if (levelError) {
-					console.log(levelError);
+					if (historyError) {
+						console.log(historyError);
+						return {
+							databaseError: true,
+							message: historyError.message
+						};
+					}
+
+					const { error: getTotalCountError, data: listInfo } = await supabase
+						.from("demons_list_info")
+						.select("*");
+
+					if (getTotalCountError) {
+						console.log(getTotalCountError);
+						return {
+							databaseError: true,
+							message: getTotalCountError.message
+						};
+					}
+
+					const { error: decrementError } = await supabase
+						.from("demons_list_info")
+						.update({
+							total_count: listInfo[0].total_count - 1
+						})
+						.eq("id", 1);
+
+					if (decrementError) {
+						console.log(decrementError);
+						return {
+							databaseError: true,
+							message: decrementError.message
+						};
+					}
+
+					// Decrement the ranks of all levels above the deleted level
+					const { error: getLevelsError, data: levels } = await supabase
+						.from("demons_list")
+						.select("*")
+						.gt("rank", level[0].rank);
+
+					if (getLevelsError) {
+						console.log(getLevelsError);
+						return {
+							databaseError: true,
+							message: getLevelsError.message
+						};
+					}
+
+					for (const level of levels?.filter((level) => level.rank !== null) ?? []) {
+						const { error: updateError } = await supabase
+							.from("demons_list")
+							.update({
+								rank: (level.rank as number) - 1
+							})
+							.eq("id", level.id);
+
+						if (updateError) {
+							console.log(updateError);
+							return {
+								databaseError: true,
+								message: updateError.message
+							};
+						}
+					}
+
 					return {
-						databaseError: true,
-						message: levelError.message
+						success: true
 					};
-				}
+				} else if (list === "challenge") {
+					const { error: levelError, data: level } = await supabase
+						.from("challenge_list")
+						.select("*")
+						.eq("id", levelId);
 
-				if (level === null || level.length === 0) {
-					return {
-						message: "Level not found"
-					};
-				}
+					if (levelError) {
+						console.log(levelError);
+						return {
+							databaseError: true,
+							message: levelError.message
+						};
+					}
 
-				if (level[0].rank === null) {
-					return {
-						message: "Level is not ranked"
-					};
-				}
+					if (level === null || level.length === 0) {
+						return {
+							message: "Level not found"
+						};
+					}
 
-				const { error: deleteError } = await supabase
-					.from("challenge_list")
-					.update({
-						deleted: true,
-						rank: null
-					})
-					.eq("id", levelId);
+					if (level[0].rank === null) {
+						return {
+							message: "Level is not ranked"
+						};
+					}
 
-				if (deleteError) {
-					console.log(deleteError);
-					return {
-						databaseError: true,
-						message: deleteError.message
-					};
-				}
-
-				const { error: historyError } = await supabase
-					.from("challenge_list_history")
-					.insert({
-						level: level[0].id,
-						operation: "delete",
-						change: level[0].rank
-					});
-
-				if (historyError) {
-					console.log(historyError);
-					return {
-						databaseError: true,
-						message: historyError.message
-					};
-				}
-
-				const { error: getTotalCountError, data: listInfo } = await supabase
-					.from("challenge_list_info")
-					.select("*");
-
-				if (getTotalCountError) {
-					console.log(getTotalCountError);
-					return {
-						databaseError: true,
-						message: getTotalCountError.message
-					};
-				}
-
-				const { error: decrementError } = await supabase
-					.from("challenge_list_info")
-					.update({
-						total_count: listInfo[0].total_count - 1
-					})
-					.eq("id", 1);
-
-				if (decrementError) {
-					console.log(decrementError);
-					return {
-						databaseError: true,
-						message: decrementError.message
-					};
-				}
-
-				// Decrement the ranks of all levels above the deleted level
-				const { error: getLevelsError, data: levels } = await supabase
-					.from("challenge_list")
-					.select("*")
-					.gt("rank", level[0].rank);
-
-				if (getLevelsError) {
-					console.log(getLevelsError);
-					return {
-						databaseError: true,
-						message: getLevelsError.message
-					};
-				}
-
-				for (const level of levels?.filter((level) => level.rank !== null) ?? []) {
-					const { error: updateError } = await supabase
+					const { error: deleteError } = await supabase
 						.from("challenge_list")
 						.update({
-							rank: (level.rank as number) - 1
+							deleted: true,
+							rank: null
 						})
-						.eq("id", level.id);
+						.eq("id", levelId);
+
+					if (deleteError) {
+						console.log(deleteError);
+						return {
+							databaseError: true,
+							message: deleteError.message
+						};
+					}
+
+					const { error: historyError } = await supabase
+						.from("challenge_list_history")
+						.insert({
+							level: level[0].id,
+							operation: "delete",
+							change: level[0].rank
+						});
+
+					if (historyError) {
+						console.log(historyError);
+						return {
+							databaseError: true,
+							message: historyError.message
+						};
+					}
+
+					const { error: getTotalCountError, data: listInfo } = await supabase
+						.from("challenge_list_info")
+						.select("*");
+
+					if (getTotalCountError) {
+						console.log(getTotalCountError);
+						return {
+							databaseError: true,
+							message: getTotalCountError.message
+						};
+					}
+
+					const { error: decrementError } = await supabase
+						.from("challenge_list_info")
+						.update({
+							total_count: listInfo[0].total_count - 1
+						})
+						.eq("id", 1);
+
+					if (decrementError) {
+						console.log(decrementError);
+						return {
+							databaseError: true,
+							message: decrementError.message
+						};
+					}
+
+					// Decrement the ranks of all levels above the deleted level
+					const { error: getLevelsError, data: levels } = await supabase
+						.from("challenge_list")
+						.select("*")
+						.gt("rank", level[0].rank);
+
+					if (getLevelsError) {
+						console.log(getLevelsError);
+						return {
+							databaseError: true,
+							message: getLevelsError.message
+						};
+					}
+
+					for (const level of levels?.filter((level) => level.rank !== null) ?? []) {
+						const { error: updateError } = await supabase
+							.from("challenge_list")
+							.update({
+								rank: (level.rank as number) - 1
+							})
+							.eq("id", level.id);
+
+						if (updateError) {
+							console.log(updateError);
+							return {
+								databaseError: true,
+								message: updateError.message
+							};
+						}
+					}
+
+					return {
+						success: true
+					};
+				}
+			} else if (deleteOrRestore === "restore") {
+				if (list === "demons") {
+					const rank = parseInt(formData.get("rank") as string);
+					const { data: listInfo, error: rankInfoError } = await supabase
+						.from("demons_list_info")
+						.select("*");
+
+					if (rankInfoError) {
+						console.log(rankInfoError);
+						return {
+							databaseError: true,
+							message: rankInfoError.message
+						};
+					}
+
+					if (rank > listInfo[0].mainlist_count + listInfo[0].extended_list_count) {
+						return {
+							rankError: true,
+							message: "Invalid rank"
+						};
+					}
+
+					const { error: updateError } = await supabase
+						.from("demons_list_info")
+						.update({
+							total_count: listInfo[0].total_count + 1
+						})
+						.eq("id", 1);
 
 					if (updateError) {
 						console.log(updateError);
@@ -431,11 +477,74 @@ export const actions = {
 							message: updateError.message
 						};
 					}
-				}
 
-				return {
-					success: true
-				};
+					const { error: historyError } = await supabase
+						.from("demons_list_history")
+						.insert({
+							change: rank,
+							operation: "insert",
+							level: parseInt(levelId)
+						});
+
+					if (historyError) {
+						console.log(historyError);
+						return {
+							databaseError: true,
+							message: historyError.message
+						};
+					}
+
+					// Increment the ranks of all levels above the restored level
+					const { error: getLevelsError, data: levels } = await supabase
+						.from("demons_list")
+						.select("*")
+						.gte("rank", rank);
+
+					if (getLevelsError) {
+						console.log(getLevelsError);
+						return {
+							databaseError: true,
+							message: getLevelsError.message
+						};
+					}
+
+					for (const level of levels?.filter((level) => level.rank !== null) ?? []) {
+						const { error: updateError } = await supabase
+							.from("demons_list")
+							.update({
+								rank: (level.rank as number) + 1
+							})
+							.eq("id", level.id);
+
+						if (updateError) {
+							console.log(updateError);
+							return {
+								databaseError: true,
+								message: updateError.message
+							};
+						}
+					}
+
+					const { error: restoreError } = await supabase
+						.from("demons_list")
+						.update({
+							deleted: false,
+							rank: rank
+						})
+						.eq("id", levelId);
+
+					if (restoreError) {
+						console.log(restoreError);
+						return {
+							databaseError: true,
+							message: restoreError.message
+						};
+					}
+
+					return {
+						success: true
+					};
+				}
 			}
 		}
 	}
@@ -454,7 +563,7 @@ export const load: PageServerLoad = async () => {
 	}
 
 	return {
-		demons: demons_list?.filter((demon) => !demon.deleted),
-		challenges: challenge_list?.filter((challenge) => !challenge.deleted)
+		demons: demons_list,
+		challenges: challenge_list
 	};
 };
