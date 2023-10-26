@@ -20,7 +20,7 @@ There are two prerequisites that a level must meet before it can be nominated:
 1. It must meet the minimum standards written in the guidelines
 2. It must receive at least 3 upvotes (the default post reaction in #submit-levels )
 
-Nominations are given by @⭐️ ⌭ Level Nominator, and you can request your level to be nominated after it meets the 2 requirements. It is highly recommended to receive feedback on a level before asking for a nomination, however it is not required.
+Nominations are given by @⭐️ ⌭ Level Nominator, and you can request your level to be nominated after it meets the 2 requirements. It is highly recommended to receive feedback on a level before asking for a nomination, however it is not required. Ping the list nominator role to request a nomination.
 
 ## Qualification
 
@@ -33,6 +33,10 @@ A nomination can be reset when a level is updated or if a @⭐️ ⌭ Level Nomi
 ## Rating and Placement
 
 Levels that have been qualified for 3 days and that have no problems will be rated (once the GDPS is set up). List placements will follow the list guidelines. Levels that are rated or placed, will only be unrated or removed for the lists under rare circumstances.
+
+## Verification
+
+When verifying a level you may make buff or nerf the level as long as it does not drastically change the level. If you would like to make major changes, please request a nomination reset. You may also freely fix other minor issues such as bugs or small errors with the decoration.
 
 ## Updating a Rated or Placed Level
 

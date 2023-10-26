@@ -34,4 +34,4 @@ _The list team has the final say in the placement of levels_
 
 ## Standards
 
-> These standards are not strictly enforced, but will be used to help determine whether a level should be placed or not. Although there is no minimum length requirement, levels that are very short and that also do not require many inputs will be unlikely to be placed. Challenges should also not be extremely low effort. Layouts are fine as long the gameplay is not extremely lazy. (e.g. copy and pasted straight fly). The gameplay of a level is usually a bigger factor than deco when determining if a level is placed or not, but having some deco (can be very basic) can allow it to be placed more easily. The gameplay of a challenge does not have be balanced or fun; challenges are intended to be hard.
+> The gameplay of a challenge does not have be balanced or fun; challenges are intended to be hard. There are no requirements for the gameplay and decoration quality of a challenge, however we may choose to not accept challenges if they are clearly low-effort, or if they are made to spam the list.
