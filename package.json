@@ -48,7 +48,7 @@
 		"@supabase/auth-helpers-sveltekit": "^0.10.3",
 		"@supabase/gotrue-js": "^2.54.0",
 		"@supabase/supabase-js": "^2.36.0",
-		"supabase": "^1.99.5",
+		"supabase": "^1.153.4",
 		"svelte-inview": "^4.0.1",
 		"svelte-local-storage-store": "^0.6.0"
 	}
